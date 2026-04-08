@@ -1,29 +1,29 @@
-# Code Owners for bolt.diy
+# Code Owners for BuildStack
 # These users/teams will automatically be requested for review when files are modified
 
 # Global ownership - repository maintainers
-* @stackblitz-labs/bolt-maintainers
+* @buildstack-ai/buildstack-maintainers
 
 # GitHub workflows and CI/CD configuration - require maintainer review
-/.github/ @stackblitz-labs/bolt-maintainers
-/package.json @stackblitz-labs/bolt-maintainers
-/pnpm-lock.yaml @stackblitz-labs/bolt-maintainers
+/.github/ @buildstack-ai/buildstack-maintainers
+/package.json @buildstack-ai/buildstack-maintainers
+/pnpm-lock.yaml @buildstack-ai/buildstack-maintainers
 
 # Security-sensitive configurations - require maintainer review
-/.env* @stackblitz-labs/bolt-maintainers
-/wrangler.toml @stackblitz-labs/bolt-maintainers  
-/Dockerfile @stackblitz-labs/bolt-maintainers
-/docker-compose.yaml @stackblitz-labs/bolt-maintainers
+/.env* @buildstack-ai/buildstack-maintainers
+/wrangler.toml @buildstack-ai/buildstack-maintainers
+/Dockerfile @buildstack-ai/buildstack-maintainers
+/docker-compose.yaml @buildstack-ai/buildstack-maintainers
 
 # Core application architecture - require maintainer review
-/app/lib/.server/ @stackblitz-labs/bolt-maintainers
-/app/routes/api.* @stackblitz-labs/bolt-maintainers
+/app/lib/.server/ @buildstack-ai/buildstack-maintainers
+/app/routes/api.* @buildstack-ai/buildstack-maintainers
 
 # Build and deployment configuration - require maintainer review
-/vite*.config.ts @stackblitz-labs/bolt-maintainers
-/tsconfig.json @stackblitz-labs/bolt-maintainers
-/uno.config.ts @stackblitz-labs/bolt-maintainers
-/eslint.config.mjs @stackblitz-labs/bolt-maintainers
+/vite*.config.ts @buildstack-ai/buildstack-maintainers
+/tsconfig.json @buildstack-ai/buildstack-maintainers
+/uno.config.ts @buildstack-ai/buildstack-maintainers
+/eslint.config.mjs @buildstack-ai/buildstack-maintainers
 
 # Documentation (optional review)
 /*.md

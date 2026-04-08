@@ -103,9 +103,9 @@ const LogEntryItem = ({ log, isExpanded: forceExpanded, use24Hour, showTimestamp
       case 'error':
         return {
           icon: 'i-ph:warning-circle',
-          color: 'text-red-500 dark:text-red-400',
+          color: 'text-buildstack-elements-button-danger-text',
           bg: 'hover:bg-red-500/10 dark:hover:bg-red-500/20',
-          badge: 'text-red-500 bg-red-50 dark:bg-red-500/10',
+          badge: 'text-buildstack-elements-icon-error bg-red-50 dark:bg-red-500/10',
         };
       case 'warning':
         return {
@@ -117,9 +117,9 @@ const LogEntryItem = ({ log, isExpanded: forceExpanded, use24Hour, showTimestamp
       case 'debug':
         return {
           icon: 'i-ph:bug',
-          color: 'text-gray-500 dark:text-gray-400',
+          color: 'text-buildstack-elements-textTertiary',
           bg: 'hover:bg-gray-500/10 dark:hover:bg-gray-500/20',
-          badge: 'text-gray-500 bg-gray-50 dark:bg-gray-500/10',
+          badge: 'text-gray-500 bg-buildstack-elements-background-depth-2',
         };
       default:
         return {
@@ -135,7 +135,7 @@ const LogEntryItem = ({ log, isExpanded: forceExpanded, use24Hour, showTimestamp
     if (log.category === 'provider') {
       return (
         <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+          <div className="flex items-center gap-2 text-xs text-buildstack-elements-textTertiary">
             <span>Model: {details.model}</span>
             <span>•</span>
             <span>Tokens: {details.totalTokens}</span>
@@ -144,16 +144,16 @@ const LogEntryItem = ({ log, isExpanded: forceExpanded, use24Hour, showTimestamp
           </div>
           {details.prompt && (
             <div className="flex flex-col gap-1">
-              <div className="text-xs font-medium text-gray-700 dark:text-gray-300">Prompt:</div>
-              <pre className="text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800/50 rounded p-2 whitespace-pre-wrap">
+              <div className="text-xs font-medium text-buildstack-elements-textSecondary">Prompt:</div>
+              <pre className="text-xs text-buildstack-elements-textSecondary bg-buildstack-elements-background-depth-2 rounded p-2 whitespace-pre-wrap">
                 {details.prompt}
               </pre>
             </div>
           )}
           {details.response && (
             <div className="flex flex-col gap-1">
-              <div className="text-xs font-medium text-gray-700 dark:text-gray-300">Response:</div>
-              <pre className="text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800/50 rounded p-2 whitespace-pre-wrap">
+              <div className="text-xs font-medium text-buildstack-elements-textSecondary">Response:</div>
+              <pre className="text-xs text-buildstack-elements-textSecondary bg-buildstack-elements-background-depth-2 rounded p-2 whitespace-pre-wrap">
                 {details.response}
               </pre>
             </div>
@@ -165,33 +165,35 @@ const LogEntryItem = ({ log, isExpanded: forceExpanded, use24Hour, showTimestamp
     if (log.category === 'api') {
       return (
         <div className="flex flex-col gap-2">
-          <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
-            <span className={details.method === 'GET' ? 'text-green-500' : 'text-blue-500'}>{details.method}</span>
+          <div className="flex items-center gap-2 text-xs text-buildstack-elements-textTertiary">
+            <span className={details.method === 'GET' ? 'text-buildstack-elements-icon-success' : 'text-blue-500'}>
+              {details.method}
+            </span>
             <span>•</span>
             <span>Status: {details.statusCode}</span>
             <span>•</span>
             <span>Duration: {details.duration}ms</span>
           </div>
-          <div className="text-xs text-gray-600 dark:text-gray-400 break-all">{details.url}</div>
+          <div className="text-xs text-buildstack-elements-textSecondary break-all">{details.url}</div>
           {details.request && (
             <div className="flex flex-col gap-1">
-              <div className="text-xs font-medium text-gray-700 dark:text-gray-300">Request:</div>
-              <pre className="text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800/50 rounded p-2 whitespace-pre-wrap">
+              <div className="text-xs font-medium text-buildstack-elements-textSecondary">Request:</div>
+              <pre className="text-xs text-buildstack-elements-textSecondary bg-buildstack-elements-background-depth-2 rounded p-2 whitespace-pre-wrap">
                 {JSON.stringify(details.request, null, 2)}
               </pre>
             </div>
           )}
           {details.response && (
             <div className="flex flex-col gap-1">
-              <div className="text-xs font-medium text-gray-700 dark:text-gray-300">Response:</div>
-              <pre className="text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800/50 rounded p-2 whitespace-pre-wrap">
+              <div className="text-xs font-medium text-buildstack-elements-textSecondary">Response:</div>
+              <pre className="text-xs text-buildstack-elements-textSecondary bg-buildstack-elements-background-depth-2 rounded p-2 whitespace-pre-wrap">
                 {JSON.stringify(details.response, null, 2)}
               </pre>
             </div>
           )}
           {details.error && (
             <div className="flex flex-col gap-1">
-              <div className="text-xs font-medium text-red-500">Error:</div>
+              <div className="text-xs font-medium text-buildstack-elements-icon-error">Error:</div>
               <pre className="text-xs text-red-400 bg-red-50 dark:bg-red-500/10 rounded p-2 whitespace-pre-wrap">
                 {JSON.stringify(details.error, null, 2)}
               </pre>
@@ -202,7 +204,7 @@ const LogEntryItem = ({ log, isExpanded: forceExpanded, use24Hour, showTimestamp
     }
 
     return (
-      <pre className="text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800/50 rounded whitespace-pre-wrap">
+      <pre className="text-xs text-buildstack-elements-textSecondary bg-buildstack-elements-background-depth-2 rounded whitespace-pre-wrap">
         {JSON.stringify(details, null, 2)}
       </pre>
     );
@@ -225,12 +227,12 @@ const LogEntryItem = ({ log, isExpanded: forceExpanded, use24Hour, showTimestamp
         <div className="flex items-start gap-3">
           <span className={classNames('text-lg', style.icon, style.color)} />
           <div className="flex flex-col gap-1">
-            <div className="text-sm font-medium text-gray-900 dark:text-white">{log.message}</div>
+            <div className="text-sm font-medium text-buildstack-elements-textPrimary">{log.message}</div>
             {log.details && (
               <>
                 <button
                   onClick={() => setLocalExpanded(!localExpanded)}
-                  className="text-xs text-gray-500 dark:text-gray-400 hover:text-purple-500 dark:hover:text-purple-400 transition-colors"
+                  className="text-xs text-buildstack-elements-textTertiary hover:text-gray-900 dark:hover:text-gray-400 transition-colors"
                 >
                   {localExpanded ? 'Hide' : 'Show'} Details
                 </button>
@@ -242,14 +244,14 @@ const LogEntryItem = ({ log, isExpanded: forceExpanded, use24Hour, showTimestamp
                 {log.level}
               </div>
               {log.category && (
-                <div className="px-2 py-0.5 rounded-full text-xs bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400">
+                <div className="px-2 py-0.5 rounded-full text-xs bg-buildstack-elements-background-depth-3 text-buildstack-elements-textTertiary">
                   {log.category}
                 </div>
               )}
             </div>
           </div>
         </div>
-        {showTimestamp && <time className="shrink-0 text-xs text-gray-500 dark:text-gray-400">{timestamp}</time>}
+        {showTimestamp && <time className="shrink-0 text-xs text-buildstack-elements-textTertiary">{timestamp}</time>}
       </div>
     </motion.div>
   );
@@ -428,7 +430,7 @@ export function EventLogsTab() {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `bolt-event-logs-${new Date().toISOString()}.json`;
+      a.download = `buildstack-event-logs-${new Date().toISOString()}.json`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
@@ -462,7 +464,7 @@ export function EventLogsTab() {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `bolt-event-logs-${new Date().toISOString()}.csv`;
+      a.download = `buildstack-event-logs-${new Date().toISOString()}.csv`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
@@ -509,10 +511,10 @@ export function EventLogsTab() {
       doc.setFont('helvetica', 'bold');
       doc.text('Event Logs Report', margin, 35);
 
-      // Add subtitle with bolt.diy
+      // Add subtitle with BuildStack
       doc.setFontSize(12);
       doc.setFont('helvetica', 'normal');
-      doc.text('bolt.diy - AI Development Platform', margin, 45);
+      doc.text('BuildStack - AI Development Platform', margin, 45);
       yPos = 70;
 
       // Add report summary section
@@ -709,14 +711,14 @@ export function EventLogsTab() {
         });
 
         // Add footer text
-        doc.text('Generated by bolt.diy', margin, doc.internal.pageSize.getHeight() - 10);
+        doc.text('Generated by BuildStack', margin, doc.internal.pageSize.getHeight() - 10);
 
         const dateStr = new Date().toLocaleDateString();
         doc.text(dateStr, pageWidth - margin, doc.internal.pageSize.getHeight() - 10, { align: 'right' });
       }
 
       // Save the PDF
-      doc.save(`bolt-event-logs-${new Date().toISOString()}.pdf`);
+      doc.save(`buildstack-event-logs-${new Date().toISOString()}.pdf`);
       toast.success('Event logs exported successfully as PDF');
     } catch (error) {
       console.error('Failed to export PDF:', error);
@@ -747,7 +749,7 @@ export function EventLogsTab() {
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `bolt-event-logs-${new Date().toISOString()}.txt`;
+      a.download = `buildstack-event-logs-${new Date().toISOString()}.txt`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
@@ -805,14 +807,14 @@ export function EventLogsTab() {
           className={classNames(
             'group flex items-center gap-2',
             'rounded-lg px-3 py-1.5',
-            'text-sm text-gray-900 dark:text-white',
+            'text-sm text-buildstack-elements-textPrimary',
             'bg-[#FAFAFA] dark:bg-[#0A0A0A]',
             'border border-[#E5E5E5] dark:border-[#1A1A1A]',
-            'hover:bg-purple-500/10 dark:hover:bg-purple-500/20',
+            'hover:bg-buildstack-elements-item-backgroundActive',
             'transition-all duration-200',
           )}
         >
-          <span className="i-ph:download text-lg text-gray-500 dark:text-gray-400 group-hover:text-purple-500 transition-colors" />
+          <span className="i-ph:download text-lg text-buildstack-elements-textTertiary group-hover:text-gray-900 transition-colors" />
           Export
         </button>
 
@@ -832,15 +834,15 @@ export function EventLogsTab() {
                     'flex items-center gap-3 px-4 py-3 text-sm rounded-lg transition-colors w-full text-left',
                     'bg-white dark:bg-[#0A0A0A]',
                     'border border-[#E5E5E5] dark:border-[#1A1A1A]',
-                    'hover:bg-purple-50 dark:hover:bg-[#1a1a1a]',
-                    'hover:border-purple-200 dark:hover:border-purple-900/30',
-                    'text-bolt-elements-textPrimary',
+                    'hover:bg-gray-100 dark:hover:bg-[#1a1a1a]',
+                    'hover:border-gray-300 dark:hover:border-gray-900/30',
+                    'text-buildstack-elements-textPrimary',
                   )}
                 >
                   <div className={classNames(format.icon, 'w-5 h-5')} />
                   <div>
                     <div className="font-medium">{format.label}</div>
-                    <div className="text-xs text-bolt-elements-textSecondary mt-0.5">
+                    <div className="text-xs text-buildstack-elements-textSecondary mt-0.5">
                       {format.id === 'json' && 'Export as a structured JSON file'}
                       {format.id === 'csv' && 'Export as a CSV spreadsheet'}
                       {format.id === 'pdf' && 'Export as a formatted PDF document'}
@@ -865,10 +867,10 @@ export function EventLogsTab() {
               className={classNames(
                 'flex items-center gap-2',
                 'rounded-lg px-3 py-1.5',
-                'text-sm text-gray-900 dark:text-white',
+                'text-sm text-buildstack-elements-textPrimary',
                 'bg-[#FAFAFA] dark:bg-[#0A0A0A]',
                 'border border-[#E5E5E5] dark:border-[#1A1A1A]',
-                'hover:bg-purple-500/10 dark:hover:bg-purple-500/20',
+                'hover:bg-buildstack-elements-item-backgroundActive',
                 'transition-all duration-200',
               )}
             >
@@ -877,7 +879,7 @@ export function EventLogsTab() {
                 style={{ color: selectedLevelOption?.color }}
               />
               {selectedLevelOption?.label || 'All Types'}
-              <span className="i-ph:caret-down text-lg text-gray-500 dark:text-gray-400" />
+              <span className="i-ph:caret-down text-lg text-buildstack-elements-textTertiary" />
             </button>
           </DropdownMenu.Trigger>
 
@@ -891,16 +893,16 @@ export function EventLogsTab() {
               {logLevelOptions.map((option) => (
                 <DropdownMenu.Item
                   key={option.value}
-                  className="group flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-purple-500/10 dark:hover:bg-purple-500/20 cursor-pointer transition-colors"
+                  className="group flex items-center px-4 py-2.5 text-sm text-buildstack-elements-textSecondary hover:bg-buildstack-elements-item-backgroundActive cursor-pointer transition-colors"
                   onClick={() => handleLevelFilterChange(option.value)}
                 >
                   <div className="mr-3 flex h-5 w-5 items-center justify-center">
                     <div
-                      className={classNames(option.icon, 'text-lg group-hover:text-purple-500 transition-colors')}
+                      className={classNames(option.icon, 'text-lg group-hover:text-gray-900 transition-colors')}
                       style={{ color: option.color }}
                     />
                   </div>
-                  <span className="group-hover:text-purple-500 transition-colors">{option.label}</span>
+                  <span className="group-hover:text-gray-900 transition-colors">{option.label}</span>
                 </DropdownMenu.Item>
               ))}
             </DropdownMenu.Content>
@@ -912,45 +914,45 @@ export function EventLogsTab() {
             <Switch
               checked={showTimestamps}
               onCheckedChange={(value) => handlePreferenceChange('timestamps', value)}
-              className="data-[state=checked]:bg-purple-500"
+              className="data-[state=checked]:bg-gray-900"
             />
-            <span className="text-sm text-gray-500 dark:text-gray-400">Show Timestamps</span>
+            <span className="text-sm text-buildstack-elements-textTertiary">Show Timestamps</span>
           </div>
 
           <div className="flex items-center gap-2">
             <Switch
               checked={use24Hour}
               onCheckedChange={(value) => handlePreferenceChange('24hour', value)}
-              className="data-[state=checked]:bg-purple-500"
+              className="data-[state=checked]:bg-gray-900"
             />
-            <span className="text-sm text-gray-500 dark:text-gray-400">24h Time</span>
+            <span className="text-sm text-buildstack-elements-textTertiary">24h Time</span>
           </div>
 
           <div className="flex items-center gap-2">
             <Switch
               checked={autoExpand}
               onCheckedChange={(value) => handlePreferenceChange('autoExpand', value)}
-              className="data-[state=checked]:bg-purple-500"
+              className="data-[state=checked]:bg-gray-900"
             />
-            <span className="text-sm text-gray-500 dark:text-gray-400">Auto Expand</span>
+            <span className="text-sm text-buildstack-elements-textTertiary">Auto Expand</span>
           </div>
 
-          <div className="w-px h-4 bg-gray-200 dark:bg-gray-700" />
+          <div className="w-px h-4 bg-buildstack-elements-background-depth-3" />
 
           <button
             onClick={handleRefresh}
             className={classNames(
               'group flex items-center gap-2',
               'rounded-lg px-3 py-1.5',
-              'text-sm text-gray-900 dark:text-white',
+              'text-sm text-buildstack-elements-textPrimary',
               'bg-[#FAFAFA] dark:bg-[#0A0A0A]',
               'border border-[#E5E5E5] dark:border-[#1A1A1A]',
-              'hover:bg-purple-500/10 dark:hover:bg-purple-500/20',
+              'hover:bg-buildstack-elements-item-backgroundActive',
               'transition-all duration-200',
               { 'animate-spin': isRefreshing },
             )}
           >
-            <span className="i-ph:arrows-clockwise text-lg text-gray-500 dark:text-gray-400 group-hover:text-purple-500 transition-colors" />
+            <span className="i-ph:arrows-clockwise text-lg text-buildstack-elements-textTertiary group-hover:text-gray-900 transition-colors" />
             Refresh
           </button>
 
@@ -969,13 +971,13 @@ export function EventLogsTab() {
               'w-full px-4 py-2 pl-10 rounded-lg',
               'bg-[#FAFAFA] dark:bg-[#0A0A0A]',
               'border border-[#E5E5E5] dark:border-[#1A1A1A]',
-              'text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400',
-              'focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500',
+              'text-buildstack-elements-textPrimary placeholder-gray-500 dark:placeholder-gray-400',
+              'focus:outline-none focus:ring-2 focus:ring-gray-900/20 focus:border-gray-900',
               'transition-all duration-200',
             )}
           />
           <div className="absolute left-3 top-1/2 -translate-y-1/2">
-            <div className="i-ph:magnifying-glass text-lg text-gray-500 dark:text-gray-400" />
+            <div className="i-ph:magnifying-glass text-lg text-buildstack-elements-textTertiary" />
           </div>
         </div>
 
@@ -990,10 +992,10 @@ export function EventLogsTab() {
               'border border-[#E5E5E5] dark:border-[#1A1A1A]',
             )}
           >
-            <span className="i-ph:clipboard-text text-4xl text-gray-400 dark:text-gray-600" />
+            <span className="i-ph:clipboard-text text-4xl text-buildstack-elements-textTertiary" />
             <div className="flex flex-col gap-1">
-              <h3 className="text-sm font-medium text-gray-900 dark:text-white">No Logs Found</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Try adjusting your search or filters</p>
+              <h3 className="text-sm font-medium text-buildstack-elements-textPrimary">No Logs Found</h3>
+              <p className="text-sm text-buildstack-elements-textTertiary">Try adjusting your search or filters</p>
             </div>
           </motion.div>
         ) : (

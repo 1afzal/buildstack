@@ -24,12 +24,12 @@ export function LoadingState({ message = 'Loading...', size = 'md', className = 
   return (
     <div
       className={classNames(
-        'flex flex-col items-center justify-center py-8 text-bolt-elements-textSecondary',
+        'flex flex-col items-center justify-center py-8 text-buildstack-elements-textSecondary',
         className,
       )}
     >
       <Loader2 className={classNames('animate-spin mb-2', sizeClasses[size])} />
-      <p className={classNames('text-bolt-elements-textSecondary', textSizeClasses[size])}>{message}</p>
+      <p className={classNames('text-buildstack-elements-textSecondary', textSizeClasses[size])}>{message}</p>
     </div>
   );
 }
@@ -65,13 +65,15 @@ export function ErrorState({
 
   return (
     <div className={classNames('flex flex-col items-center justify-center py-8 text-center', className)}>
-      <AlertCircle className={classNames('text-red-500 mb-2', sizeClasses[size])} />
-      <h3 className={classNames('font-medium text-bolt-elements-textPrimary mb-1', textSizeClasses[size])}>{title}</h3>
-      <p className={classNames('text-bolt-elements-textSecondary mb-4', textSizeClasses[size])}>{message}</p>
+      <AlertCircle className={classNames('text-buildstack-elements-icon-error mb-2', sizeClasses[size])} />
+      <h3 className={classNames('font-medium text-buildstack-elements-textPrimary mb-1', textSizeClasses[size])}>
+        {title}
+      </h3>
+      <p className={classNames('text-buildstack-elements-textSecondary mb-4', textSizeClasses[size])}>{message}</p>
       {onRetry && (
         <button
           onClick={onRetry}
-          className="px-4 py-2 bg-bolt-elements-item-contentAccent text-white rounded-lg hover:bg-bolt-elements-item-contentAccent/90 transition-colors"
+          className="px-4 py-2 bg-buildstack-elements-item-contentAccent text-white rounded-lg hover:bg-buildstack-elements-item-contentAccent/90 transition-colors"
         >
           {retryLabel}
         </button>
@@ -111,13 +113,15 @@ export function SuccessState({
 
   return (
     <div className={classNames('flex flex-col items-center justify-center py-8 text-center', className)}>
-      <CheckCircle className={classNames('text-green-500 mb-2', sizeClasses[size])} />
-      <h3 className={classNames('font-medium text-bolt-elements-textPrimary mb-1', textSizeClasses[size])}>{title}</h3>
-      <p className={classNames('text-bolt-elements-textSecondary mb-4', textSizeClasses[size])}>{message}</p>
+      <CheckCircle className={classNames('text-buildstack-elements-icon-success mb-2', sizeClasses[size])} />
+      <h3 className={classNames('font-medium text-buildstack-elements-textPrimary mb-1', textSizeClasses[size])}>
+        {title}
+      </h3>
+      <p className={classNames('text-buildstack-elements-textSecondary mb-4', textSizeClasses[size])}>{message}</p>
       {onAction && (
         <button
           onClick={onAction}
-          className="px-4 py-2 bg-bolt-elements-item-contentAccent text-white rounded-lg hover:bg-bolt-elements-item-contentAccent/90 transition-colors"
+          className="px-4 py-2 bg-buildstack-elements-item-contentAccent text-white rounded-lg hover:bg-buildstack-elements-item-contentAccent/90 transition-colors"
         >
           {actionLabel}
         </button>
@@ -134,16 +138,16 @@ interface GitHubConnectionRequiredProps {
 export function GitHubConnectionRequired({ onConnect, className = '' }: GitHubConnectionRequiredProps) {
   return (
     <div className={classNames('flex flex-col items-center justify-center py-12 text-center', className)}>
-      <Github className="w-12 h-12 text-bolt-elements-textTertiary mb-4" />
-      <h3 className="text-lg font-medium text-bolt-elements-textPrimary mb-2">GitHub Connection Required</h3>
-      <p className="text-sm text-bolt-elements-textSecondary mb-6 max-w-md">
+      <Github className="w-12 h-12 text-buildstack-elements-textTertiary mb-4" />
+      <h3 className="text-lg font-medium text-buildstack-elements-textPrimary mb-2">GitHub Connection Required</h3>
+      <p className="text-sm text-buildstack-elements-textSecondary mb-6 max-w-md">
         Please connect your GitHub account to access this feature. You'll be able to browse repositories, push code, and
         manage your GitHub integration.
       </p>
       {onConnect && (
         <button
           onClick={onConnect}
-          className="px-6 py-3 bg-bolt-elements-item-contentAccent text-white rounded-lg hover:bg-bolt-elements-item-contentAccent/90 transition-colors flex items-center gap-2"
+          className="px-6 py-3 bg-buildstack-elements-item-contentAccent text-white rounded-lg hover:bg-buildstack-elements-item-contentAccent/90 transition-colors flex items-center gap-2"
         >
           <Github className="w-4 h-4" />
           Connect GitHub
@@ -187,12 +191,14 @@ export function InformationState({
   return (
     <div className={classNames('flex flex-col items-center justify-center py-8 text-center', className)}>
       {React.createElement(icon, { className: classNames('text-blue-500 mb-2', sizeClasses[size]) })}
-      <h3 className={classNames('font-medium text-bolt-elements-textPrimary mb-1', textSizeClasses[size])}>{title}</h3>
-      <p className={classNames('text-bolt-elements-textSecondary mb-4', textSizeClasses[size])}>{message}</p>
+      <h3 className={classNames('font-medium text-buildstack-elements-textPrimary mb-1', textSizeClasses[size])}>
+        {title}
+      </h3>
+      <p className={classNames('text-buildstack-elements-textSecondary mb-4', textSizeClasses[size])}>{message}</p>
       {onAction && (
         <button
           onClick={onAction}
-          className="px-4 py-2 bg-bolt-elements-item-contentAccent text-white rounded-lg hover:bg-bolt-elements-item-contentAccent/90 transition-colors"
+          className="px-4 py-2 bg-buildstack-elements-item-contentAccent text-white rounded-lg hover:bg-buildstack-elements-item-contentAccent/90 transition-colors"
         >
           {actionLabel}
         </button>
@@ -235,7 +241,7 @@ export function ConnectionTestIndicator({ status, message, timestamp, className 
       case 'testing':
         return <Loader2 className="w-5 h-5 animate-spin text-blue-600 dark:text-blue-400" />;
       default:
-        return <Info className="w-5 h-5 text-gray-600 dark:text-gray-400" />;
+        return <Info className="w-5 h-5 text-buildstack-elements-textSecondary" />;
     }
   };
 
@@ -248,7 +254,7 @@ export function ConnectionTestIndicator({ status, message, timestamp, className 
       case 'testing':
         return 'text-blue-800 dark:text-blue-200';
       default:
-        return 'text-gray-800 dark:text-gray-200';
+        return 'text-buildstack-elements-textPrimary';
     }
   };
 

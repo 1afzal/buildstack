@@ -87,8 +87,8 @@ export function EmptyState({
     <div
       className={classNames(
         'flex flex-col items-center justify-center',
-        'text-bolt-elements-textSecondary dark:text-bolt-elements-textSecondary-dark',
-        'bg-bolt-elements-background-depth-2 dark:bg-bolt-elements-background-depth-3 rounded-lg',
+        'text-buildstack-elements-textSecondary dark:text-buildstack-elements-textSecondary-dark',
+        'bg-buildstack-elements-background-depth-2 dark:bg-buildstack-elements-background-depth-3 rounded-lg',
         styles.container,
         className,
       )}
@@ -96,7 +96,7 @@ export function EmptyState({
       {/* Icon */}
       <div
         className={classNames(
-          'rounded-full bg-bolt-elements-background-depth-3 dark:bg-bolt-elements-background-depth-4 flex items-center justify-center',
+          'rounded-full bg-buildstack-elements-background-depth-3 dark:bg-buildstack-elements-background-depth-4 flex items-center justify-center',
           styles.icon.container,
         )}
       >
@@ -104,7 +104,7 @@ export function EmptyState({
           className={classNames(
             icon,
             styles.icon.size,
-            'text-bolt-elements-textTertiary dark:text-bolt-elements-textTertiary-dark',
+            'text-buildstack-elements-textTertiary dark:text-buildstack-elements-textTertiary-dark',
           )}
         />
       </div>
@@ -116,7 +116,7 @@ export function EmptyState({
       {description && (
         <p
           className={classNames(
-            'text-bolt-elements-textTertiary dark:text-bolt-elements-textTertiary-dark text-center max-w-xs',
+            'text-buildstack-elements-textTertiary dark:text-buildstack-elements-textTertiary-dark text-center max-w-xs',
             styles.description,
           )}
         >
@@ -133,7 +133,7 @@ export function EmptyState({
                 onClick={onAction}
                 variant="default"
                 size={styles.buttonSize}
-                className="bg-purple-500 hover:bg-purple-600 text-white"
+                className="bg-gray-900 hover:bg-gray-600 text-white"
               >
                 {actionLabel}
               </Button>

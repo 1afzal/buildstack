@@ -17,7 +17,7 @@ const STATUS_COLORS: Record<StatusType, string> = {
   warning: 'bg-yellow-500',
   busy: 'bg-red-500',
   info: 'bg-blue-500',
-  loading: 'bg-purple-500',
+  loading: 'bg-gray-900',
 };
 
 // Size class mapping
@@ -78,7 +78,7 @@ export function StatusIndicator({ status, size = 'md', pulse = false, label, cla
       {label && (
         <span
           className={classNames(
-            'text-bolt-elements-textSecondary dark:text-bolt-elements-textSecondary-dark',
+            'text-buildstack-elements-textSecondary dark:text-buildstack-elements-textSecondary-dark',
             textSizeClass,
           )}
         >

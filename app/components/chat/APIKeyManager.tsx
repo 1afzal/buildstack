@@ -89,23 +89,25 @@ export const APIKeyManager: React.FC<APIKeyManagerProps> = ({ provider, apiKey, 
     <div className="flex items-center justify-between py-3 px-1">
       <div className="flex items-center gap-2 flex-1">
         <div className="flex items-center gap-2">
-          <span className="text-sm font-medium text-bolt-elements-textSecondary">{provider?.name} API Key:</span>
+          <span className="text-sm font-medium text-buildstack-elements-textSecondary">{provider?.name} API Key:</span>
           {!isEditing && (
             <div className="flex items-center gap-2">
               {apiKey ? (
                 <>
-                  <div className="i-ph:check-circle-fill text-green-500 w-4 h-4" />
-                  <span className="text-xs text-green-500">Set via UI</span>
+                  <div className="i-ph:check-circle-fill text-buildstack-elements-icon-success w-4 h-4" />
+                  <span className="text-xs text-buildstack-elements-icon-success">Set via UI</span>
                 </>
               ) : isEnvKeySet ? (
                 <>
-                  <div className="i-ph:check-circle-fill text-green-500 w-4 h-4" />
-                  <span className="text-xs text-green-500">Set via environment variable</span>
+                  <div className="i-ph:check-circle-fill text-buildstack-elements-icon-success w-4 h-4" />
+                  <span className="text-xs text-buildstack-elements-icon-success">Set via environment variable</span>
                 </>
               ) : (
                 <>
-                  <div className="i-ph:x-circle-fill text-red-500 w-4 h-4" />
-                  <span className="text-xs text-red-500">Not Set (Please set via UI or ENV_VAR)</span>
+                  <div className="i-ph:x-circle-fill text-buildstack-elements-icon-error w-4 h-4" />
+                  <span className="text-xs text-buildstack-elements-icon-error">
+                    Not Set (Please set via UI or ENV_VAR)
+                  </span>
                 </>
               )}
             </div>
@@ -121,21 +123,21 @@ export const APIKeyManager: React.FC<APIKeyManagerProps> = ({ provider, apiKey, 
               value={tempKey}
               placeholder="Enter API Key"
               onChange={(e) => setTempKey(e.target.value)}
-              className="w-[300px] px-3 py-1.5 text-sm rounded border border-bolt-elements-borderColor 
-                        bg-bolt-elements-prompt-background text-bolt-elements-textPrimary 
-                        focus:outline-none focus:ring-2 focus:ring-bolt-elements-focus"
+              className="w-[300px] px-3 py-1.5 text-sm rounded border border-buildstack-elements-borderColor 
+                        bg-buildstack-elements-prompt-background text-buildstack-elements-textPrimary 
+                        focus:outline-none focus:ring-2 focus:ring-buildstack-elements-focus"
             />
             <IconButton
               onClick={handleSave}
               title="Save API Key"
-              className="bg-green-500/10 hover:bg-green-500/20 text-green-500"
+              className="bg-green-500/10 hover:bg-green-500/20 text-buildstack-elements-icon-success"
             >
               <div className="i-ph:check w-4 h-4" />
             </IconButton>
             <IconButton
               onClick={() => setIsEditing(false)}
               title="Cancel"
-              className="bg-red-500/10 hover:bg-red-500/20 text-red-500"
+              className="bg-red-500/10 hover:bg-red-500/20 text-buildstack-elements-icon-error"
             >
               <div className="i-ph:x w-4 h-4" />
             </IconButton>
@@ -155,7 +157,7 @@ export const APIKeyManager: React.FC<APIKeyManagerProps> = ({ provider, apiKey, 
               <IconButton
                 onClick={() => window.open(provider?.getApiKeyLink)}
                 title="Get API Key"
-                className="bg-purple-500/10 hover:bg-purple-500/20 text-purple-500 flex items-center gap-2"
+                className="bg-gray-900/10 hover:bg-gray-900/20 text-gray-900 flex items-center gap-2"
               >
                 <span className="text-xs whitespace-nowrap">{provider?.labelForGetApiKey || 'Get API Key'}</span>
                 <div className={`${provider?.icon || 'i-ph:key'} w-4 h-4`} />

@@ -37,14 +37,14 @@ export default class ErrorBoundary extends Component<Props, State> {
 
       return (
         <div className={classNames('p-6 rounded-lg border border-red-500/20', 'bg-red-500/5 text-center')}>
-          <AlertCircle className="w-12 h-12 mx-auto text-red-500 mb-4" />
-          <h3 className="text-lg font-medium text-red-500 mb-2">Something went wrong</h3>
+          <AlertCircle className="w-12 h-12 mx-auto text-buildstack-elements-icon-error mb-4" />
+          <h3 className="text-lg font-medium text-buildstack-elements-icon-error mb-2">Something went wrong</h3>
           <p className="text-sm text-red-400 mb-4">There was an error loading the local providers section.</p>
           <button
             onClick={() => this.setState({ hasError: false, error: undefined })}
             className={classNames(
               'px-4 py-2 rounded-lg text-sm font-medium',
-              'bg-red-500/10 text-red-500',
+              'bg-red-500/10 text-buildstack-elements-icon-error',
               'hover:bg-red-500/20',
               'transition-colors duration-200',
             )}

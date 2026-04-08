@@ -92,8 +92,8 @@ const NotificationsTab = () => {
     if (type === 'update') {
       return {
         icon: 'i-ph:arrow-circle-up',
-        color: 'text-purple-500 dark:text-purple-400',
-        bg: 'hover:bg-purple-500/10 dark:hover:bg-purple-500/20',
+        color: 'text-buildstack-elements-textSecondary',
+        bg: 'hover:bg-buildstack-elements-item-backgroundActive',
       };
     }
 
@@ -101,7 +101,7 @@ const NotificationsTab = () => {
       case 'error':
         return {
           icon: 'i-ph:warning-circle',
-          color: 'text-red-500 dark:text-red-400',
+          color: 'text-buildstack-elements-button-danger-text',
           bg: 'hover:bg-red-500/10 dark:hover:bg-red-500/20',
         };
       case 'warning':
@@ -119,7 +119,7 @@ const NotificationsTab = () => {
       default:
         return {
           icon: 'i-ph:bell',
-          color: 'text-gray-500 dark:text-gray-400',
+          color: 'text-buildstack-elements-textTertiary',
           bg: 'hover:bg-gray-500/10 dark:hover:bg-gray-500/20',
         };
     }
@@ -129,8 +129,8 @@ const NotificationsTab = () => {
     if (details.type === 'update') {
       return (
         <div className="flex flex-col gap-2">
-          <p className="text-sm text-gray-600 dark:text-gray-400">{details.message}</p>
-          <div className="flex flex-col gap-1 text-xs text-gray-500 dark:text-gray-500">
+          <p className="text-sm text-buildstack-elements-textSecondary">{details.message}</p>
+          <div className="flex flex-col gap-1 text-xs text-buildstack-elements-textTertiary">
             <p>Current Version: {details.currentVersion}</p>
             <p>Latest Version: {details.latestVersion}</p>
             <p>Branch: {details.branch}</p>
@@ -143,8 +143,8 @@ const NotificationsTab = () => {
               'text-sm font-medium',
               'bg-[#FAFAFA] dark:bg-[#0A0A0A]',
               'border border-[#E5E5E5] dark:border-[#1A1A1A]',
-              'text-gray-900 dark:text-white',
-              'hover:bg-purple-500/10 dark:hover:bg-purple-500/20',
+              'text-buildstack-elements-textPrimary',
+              'hover:bg-buildstack-elements-item-backgroundActive',
               'transition-all duration-200',
             )}
           >
@@ -155,7 +155,7 @@ const NotificationsTab = () => {
       );
     }
 
-    return details.message ? <p className="text-sm text-gray-600 dark:text-gray-400">{details.message}</p> : null;
+    return details.message ? <p className="text-sm text-buildstack-elements-textSecondary">{details.message}</p> : null;
   };
 
   const filterOptions: { id: FilterType; label: string; icon: string; color: string }[] = [
@@ -178,10 +178,10 @@ const NotificationsTab = () => {
               className={classNames(
                 'flex items-center gap-2',
                 'rounded-lg px-3 py-1.5',
-                'text-sm text-gray-900 dark:text-white',
+                'text-sm text-buildstack-elements-textPrimary',
                 'bg-[#FAFAFA] dark:bg-[#0A0A0A]',
                 'border border-[#E5E5E5] dark:border-[#1A1A1A]',
-                'hover:bg-purple-500/10 dark:hover:bg-purple-500/20',
+                'hover:bg-buildstack-elements-item-backgroundActive',
                 'transition-all duration-200',
               )}
             >
@@ -190,7 +190,7 @@ const NotificationsTab = () => {
                 style={{ color: filterOptions.find((opt) => opt.id === filter)?.color }}
               />
               {filterOptions.find((opt) => opt.id === filter)?.label || 'Filter Notifications'}
-              <span className="i-ph:caret-down text-lg text-gray-500 dark:text-gray-400" />
+              <span className="i-ph:caret-down text-lg text-buildstack-elements-textTertiary" />
             </button>
           </DropdownMenu.Trigger>
 
@@ -204,16 +204,16 @@ const NotificationsTab = () => {
               {filterOptions.map((option) => (
                 <DropdownMenu.Item
                   key={option.id}
-                  className="group flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-purple-500/10 dark:hover:bg-purple-500/20 cursor-pointer transition-colors"
+                  className="group flex items-center px-4 py-2.5 text-sm text-buildstack-elements-textSecondary hover:bg-buildstack-elements-item-backgroundActive cursor-pointer transition-colors"
                   onClick={() => handleFilterChange(option.id)}
                 >
                   <div className="mr-3 flex h-5 w-5 items-center justify-center">
                     <div
-                      className={classNames(option.icon, 'text-lg group-hover:text-purple-500 transition-colors')}
+                      className={classNames(option.icon, 'text-lg group-hover:text-gray-900 transition-colors')}
                       style={{ color: option.color }}
                     />
                   </div>
-                  <span className="group-hover:text-purple-500 transition-colors">{option.label}</span>
+                  <span className="group-hover:text-gray-900 transition-colors">{option.label}</span>
                 </DropdownMenu.Item>
               ))}
             </DropdownMenu.Content>
@@ -225,14 +225,14 @@ const NotificationsTab = () => {
           className={classNames(
             'group flex items-center gap-2',
             'rounded-lg px-3 py-1.5',
-            'text-sm text-gray-900 dark:text-white',
+            'text-sm text-buildstack-elements-textPrimary',
             'bg-[#FAFAFA] dark:bg-[#0A0A0A]',
             'border border-[#E5E5E5] dark:border-[#1A1A1A]',
-            'hover:bg-purple-500/10 dark:hover:bg-purple-500/20',
+            'hover:bg-buildstack-elements-item-backgroundActive',
             'transition-all duration-200',
           )}
         >
-          <span className="i-ph:trash text-lg text-gray-500 dark:text-gray-400 group-hover:text-purple-500 transition-colors" />
+          <span className="i-ph:trash text-lg text-buildstack-elements-textTertiary group-hover:text-gray-900 transition-colors" />
           Clear All
         </button>
       </div>
@@ -249,10 +249,10 @@ const NotificationsTab = () => {
               'border border-[#E5E5E5] dark:border-[#1A1A1A]',
             )}
           >
-            <span className="i-ph:bell-slash text-4xl text-gray-400 dark:text-gray-600" />
+            <span className="i-ph:bell-slash text-4xl text-buildstack-elements-textTertiary" />
             <div className="flex flex-col gap-1">
-              <h3 className="text-sm font-medium text-gray-900 dark:text-white">No Notifications</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400">You're all caught up!</p>
+              <h3 className="text-sm font-medium text-buildstack-elements-textPrimary">No Notifications</h3>
+              <p className="text-sm text-buildstack-elements-textTertiary">You're all caught up!</p>
             </div>
           </motion.div>
         ) : (
@@ -276,15 +276,15 @@ const NotificationsTab = () => {
                   <div className="flex items-start gap-3">
                     <span className={classNames('text-lg', style.icon, style.color)} />
                     <div className="flex flex-col gap-1">
-                      <h3 className="text-sm font-medium text-gray-900 dark:text-white">{log.message}</h3>
+                      <h3 className="text-sm font-medium text-buildstack-elements-textPrimary">{log.message}</h3>
                       {log.details && renderNotificationDetails(log.details as NotificationDetails)}
-                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                      <p className="text-xs text-buildstack-elements-textTertiary">
                         Category: {log.category}
                         {log.subCategory ? ` > ${log.subCategory}` : ''}
                       </p>
                     </div>
                   </div>
-                  <time className="shrink-0 text-xs text-gray-500 dark:text-gray-400">
+                  <time className="shrink-0 text-xs text-buildstack-elements-textTertiary">
                     {formatDistanceToNow(new Date(log.timestamp), { addSuffix: true })}
                   </time>
                 </div>

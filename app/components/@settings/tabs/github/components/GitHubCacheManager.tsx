@@ -224,14 +224,14 @@ export function GitHubCacheManager({ className = '', showStats = true }: GitHubC
   return (
     <div
       className={classNames(
-        'space-y-4 p-4 bg-bolt-elements-background-depth-1 border border-bolt-elements-borderColor rounded-lg',
+        'space-y-4 p-4 bg-buildstack-elements-background-depth-1 border border-buildstack-elements-borderColor rounded-lg',
         className,
       )}
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Database className="w-4 h-4 text-bolt-elements-item-contentAccent" />
-          <h3 className="text-sm font-medium text-bolt-elements-textPrimary">GitHub Cache Management</h3>
+          <Database className="w-4 h-4 text-buildstack-elements-item-contentAccent" />
+          <h3 className="text-sm font-medium text-buildstack-elements-textPrimary">GitHub Cache Management</h3>
         </div>
 
         <div className="flex items-center gap-2">
@@ -243,38 +243,38 @@ export function GitHubCacheManager({ className = '', showStats = true }: GitHubC
 
       {showStats && (
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <div className="bg-bolt-elements-background-depth-2 p-3 rounded-lg">
+          <div className="bg-buildstack-elements-background-depth-2 p-3 rounded-lg">
             <div className="flex items-center gap-2 mb-1">
-              <HardDrive className="w-3 h-3 text-bolt-elements-textSecondary" />
-              <span className="text-xs font-medium text-bolt-elements-textSecondary">Total Size</span>
+              <HardDrive className="w-3 h-3 text-buildstack-elements-textSecondary" />
+              <span className="text-xs font-medium text-buildstack-elements-textSecondary">Total Size</span>
             </div>
-            <p className="text-sm font-semibold text-bolt-elements-textPrimary">
+            <p className="text-sm font-semibold text-buildstack-elements-textPrimary">
               {CacheManagerService.formatSize(cacheStats.totalSize)}
             </p>
           </div>
 
-          <div className="bg-bolt-elements-background-depth-2 p-3 rounded-lg">
+          <div className="bg-buildstack-elements-background-depth-2 p-3 rounded-lg">
             <div className="flex items-center gap-2 mb-1">
-              <Database className="w-3 h-3 text-bolt-elements-textSecondary" />
-              <span className="text-xs font-medium text-bolt-elements-textSecondary">Entries</span>
+              <Database className="w-3 h-3 text-buildstack-elements-textSecondary" />
+              <span className="text-xs font-medium text-buildstack-elements-textSecondary">Entries</span>
             </div>
-            <p className="text-sm font-semibold text-bolt-elements-textPrimary">{cacheStats.totalEntries}</p>
+            <p className="text-sm font-semibold text-buildstack-elements-textPrimary">{cacheStats.totalEntries}</p>
           </div>
 
-          <div className="bg-bolt-elements-background-depth-2 p-3 rounded-lg">
+          <div className="bg-buildstack-elements-background-depth-2 p-3 rounded-lg">
             <div className="flex items-center gap-2 mb-1">
-              <Clock className="w-3 h-3 text-bolt-elements-textSecondary" />
-              <span className="text-xs font-medium text-bolt-elements-textSecondary">Oldest</span>
+              <Clock className="w-3 h-3 text-buildstack-elements-textSecondary" />
+              <span className="text-xs font-medium text-buildstack-elements-textSecondary">Oldest</span>
             </div>
-            <p className="text-xs text-bolt-elements-textSecondary">
+            <p className="text-xs text-buildstack-elements-textSecondary">
               {cacheStats.oldestEntry ? new Date(cacheStats.oldestEntry).toLocaleDateString() : 'N/A'}
             </p>
           </div>
 
-          <div className="bg-bolt-elements-background-depth-2 p-3 rounded-lg">
+          <div className="bg-buildstack-elements-background-depth-2 p-3 rounded-lg">
             <div className="flex items-center gap-2 mb-1">
-              <CheckCircle className="w-3 h-3 text-bolt-elements-textSecondary" />
-              <span className="text-xs font-medium text-bolt-elements-textSecondary">Status</span>
+              <CheckCircle className="w-3 h-3 text-buildstack-elements-textSecondary" />
+              <span className="text-xs font-medium text-buildstack-elements-textSecondary">Status</span>
             </div>
             <p className="text-xs text-green-600 dark:text-green-400">
               {cacheStats.totalEntries > 0 ? 'Active' : 'Empty'}
@@ -285,7 +285,7 @@ export function GitHubCacheManager({ className = '', showStats = true }: GitHubC
 
       {cacheEntries.length > 0 && (
         <div className="space-y-2">
-          <h4 className="text-xs font-medium text-bolt-elements-textSecondary">
+          <h4 className="text-xs font-medium text-buildstack-elements-textSecondary">
             Cache Entries ({cacheEntries.length})
           </h4>
 
@@ -293,13 +293,13 @@ export function GitHubCacheManager({ className = '', showStats = true }: GitHubC
             {cacheEntries.map((entry) => (
               <div
                 key={entry.key}
-                className="flex items-center justify-between p-2 bg-bolt-elements-background-depth-2 rounded border border-bolt-elements-borderColor"
+                className="flex items-center justify-between p-2 bg-buildstack-elements-background-depth-2 rounded border border-buildstack-elements-borderColor"
               >
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs font-medium text-bolt-elements-textPrimary truncate">
+                  <p className="text-xs font-medium text-buildstack-elements-textPrimary truncate">
                     {entry.key.replace('github_', '')}
                   </p>
-                  <p className="text-xs text-bolt-elements-textSecondary">
+                  <p className="text-xs text-buildstack-elements-textSecondary">
                     {CacheManagerService.formatSize(entry.size)} • {new Date(entry.lastAccessed).toLocaleString()}
                   </p>
                 </div>
@@ -311,7 +311,7 @@ export function GitHubCacheManager({ className = '', showStats = true }: GitHubC
                   disabled={isLoading}
                   className="ml-2"
                 >
-                  <Trash2 className="w-3 h-3 text-red-500" />
+                  <Trash2 className="w-3 h-3 text-buildstack-elements-icon-error" />
                 </Button>
               </div>
             ))}
@@ -319,7 +319,7 @@ export function GitHubCacheManager({ className = '', showStats = true }: GitHubC
         </div>
       )}
 
-      <div className="flex flex-wrap gap-2 pt-2 border-t border-bolt-elements-borderColor">
+      <div className="flex flex-wrap gap-2 pt-2 border-t border-buildstack-elements-borderColor">
         <Button
           variant="outline"
           size="sm"

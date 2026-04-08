@@ -27,8 +27,8 @@ export function SearchResultItem({
   subtitle,
   description,
   icon,
-  iconBackground = 'bg-bolt-elements-background-depth-1/80 dark:bg-bolt-elements-background-depth-4/80',
-  iconColor = 'text-purple-500',
+  iconBackground = 'bg-buildstack-elements-background-depth-1/80 dark:bg-buildstack-elements-background-depth-4/80',
+  iconColor = 'text-gray-900',
   tags,
   metadata,
   actionLabel,
@@ -39,7 +39,7 @@ export function SearchResultItem({
   return (
     <motion.div
       className={classNames(
-        'p-5 rounded-xl border border-bolt-elements-borderColor dark:border-bolt-elements-borderColor-dark hover:border-purple-500/40 transition-all duration-300 shadow-sm hover:shadow-md bg-bolt-elements-background-depth-1/50 dark:bg-bolt-elements-background-depth-3/50',
+        'p-5 rounded-xl border border-buildstack-elements-borderColor dark:border-buildstack-elements-borderColor-dark hover:border-gray-900/40 transition-all duration-300 shadow-sm hover:shadow-md bg-buildstack-elements-background-depth-1/50 dark:bg-buildstack-elements-background-depth-3/50',
         onClick ? 'cursor-pointer' : '',
         className,
       )}
@@ -67,11 +67,11 @@ export function SearchResultItem({
             </div>
           )}
           <div>
-            <h3 className="font-medium text-bolt-elements-textPrimary dark:text-bolt-elements-textPrimary-dark text-base">
+            <h3 className="font-medium text-buildstack-elements-textPrimary dark:text-buildstack-elements-textPrimary-dark text-base">
               {title}
             </h3>
             {subtitle && (
-              <p className="text-xs text-bolt-elements-textTertiary dark:text-bolt-elements-textTertiary-dark flex items-center gap-1">
+              <p className="text-xs text-buildstack-elements-textTertiary dark:text-buildstack-elements-textTertiary-dark flex items-center gap-1">
                 {subtitle}
               </p>
             )}
@@ -84,7 +84,7 @@ export function SearchResultItem({
               e.stopPropagation();
               onAction();
             }}
-            className="px-4 py-2 h-9 rounded-lg bg-purple-500 text-white hover:bg-purple-600 transition-all duration-200 flex items-center gap-2 min-w-[100px] justify-center text-sm shadow-sm hover:shadow-md"
+            className="px-4 py-2 h-9 rounded-lg bg-gray-900 text-white hover:bg-gray-600 transition-all duration-200 flex items-center gap-2 min-w-[100px] justify-center text-sm shadow-sm hover:shadow-md"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -94,8 +94,8 @@ export function SearchResultItem({
       </div>
 
       {description && (
-        <div className="mb-4 bg-bolt-elements-background-depth-1/50 dark:bg-bolt-elements-background-depth-4/50 backdrop-blur-sm p-3 rounded-lg border border-bolt-elements-borderColor/30 dark:border-bolt-elements-borderColor-dark/30">
-          <p className="text-sm text-bolt-elements-textSecondary dark:text-bolt-elements-textSecondary-dark line-clamp-2">
+        <div className="mb-4 bg-buildstack-elements-background-depth-1/50 dark:bg-buildstack-elements-background-depth-4/50 backdrop-blur-sm p-3 rounded-lg border border-buildstack-elements-borderColor/30 dark:border-buildstack-elements-borderColor-dark/30">
+          <p className="text-sm text-buildstack-elements-textSecondary dark:text-buildstack-elements-textSecondary-dark line-clamp-2">
             {description}
           </p>
         </div>
@@ -112,7 +112,7 @@ export function SearchResultItem({
       )}
 
       {metadata && metadata.length > 0 && (
-        <div className="flex flex-wrap items-center gap-3 text-xs text-bolt-elements-textTertiary dark:text-bolt-elements-textTertiary-dark">
+        <div className="flex flex-wrap items-center gap-3 text-xs text-buildstack-elements-textTertiary dark:text-buildstack-elements-textTertiary-dark">
           {metadata.map((item, index) => (
             <div key={index} className="flex items-center gap-1">
               {item.icon && <span className={classNames(item.icon, 'w-3.5 h-3.5')} />}
@@ -120,7 +120,7 @@ export function SearchResultItem({
                 {item.label}
                 {item.value !== undefined && ': '}
                 {item.value !== undefined && (
-                  <span className="text-bolt-elements-textSecondary dark:text-bolt-elements-textSecondary-dark">
+                  <span className="text-buildstack-elements-textSecondary dark:text-buildstack-elements-textSecondary-dark">
                     {item.value}
                   </span>
                 )}

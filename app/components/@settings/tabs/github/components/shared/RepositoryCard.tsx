@@ -78,14 +78,14 @@ export function RepositoryCard({
 
     const getScoreColor = (score: number) => {
       if (score >= 5) {
-        return 'text-green-500';
+        return 'text-buildstack-elements-icon-success';
       }
 
       if (score >= 3) {
         return 'text-yellow-500';
       }
 
-      return 'text-red-500';
+      return 'text-buildstack-elements-icon-error';
     };
 
     return {
@@ -138,19 +138,19 @@ export function RepositoryCard({
       <button
         onClick={onSelect}
         className={classNames(
-          'w-full text-left p-3 rounded-lg border border-bolt-elements-borderColor hover:border-bolt-elements-borderColorActive hover:bg-bolt-elements-background-depth-1 transition-all duration-200',
+          'w-full text-left p-3 rounded-lg border border-buildstack-elements-borderColor hover:border-buildstack-elements-borderColorActive hover:bg-buildstack-elements-background-depth-1 transition-all duration-200',
           className,
         )}
       >
         <div className="flex items-start justify-between mb-2">
           <div className="flex items-center gap-2">
-            <h4 className="text-sm font-medium text-bolt-elements-textPrimary">{repository.name}</h4>
-            {repository.private && <Lock className="w-3 h-3 text-bolt-elements-textTertiary" />}
-            {repository.fork && <GitFork className="w-3 h-3 text-bolt-elements-textTertiary" />}
-            {repository.archived && <Archive className="w-3 h-3 text-bolt-elements-textTertiary" />}
+            <h4 className="text-sm font-medium text-buildstack-elements-textPrimary">{repository.name}</h4>
+            {repository.private && <Lock className="w-3 h-3 text-buildstack-elements-textTertiary" />}
+            {repository.fork && <GitFork className="w-3 h-3 text-buildstack-elements-textTertiary" />}
+            {repository.archived && <Archive className="w-3 h-3 text-buildstack-elements-textTertiary" />}
           </div>
 
-          <div className="flex items-center gap-3 text-xs text-bolt-elements-textSecondary">
+          <div className="flex items-center gap-3 text-xs text-buildstack-elements-textSecondary">
             <span className="flex items-center gap-1">
               <Star className="w-3 h-3" />
               {repository.stargazers_count}
@@ -163,11 +163,11 @@ export function RepositoryCard({
         </div>
 
         {repository.description && (
-          <p className="text-xs text-bolt-elements-textSecondary mb-2 line-clamp-2">{repository.description}</p>
+          <p className="text-xs text-buildstack-elements-textSecondary mb-2 line-clamp-2">{repository.description}</p>
         )}
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3 text-xs text-bolt-elements-textTertiary">
+          <div className="flex items-center gap-3 text-xs text-buildstack-elements-textTertiary">
             {repository.language && (
               <span className="flex items-center gap-1">
                 <div className="w-2 h-2 rounded-full bg-current opacity-60" />
@@ -177,7 +177,7 @@ export function RepositoryCard({
             {repository.size && <span>{formatSize(repository.size * 1024)}</span>}
           </div>
 
-          <span className="flex items-center gap-1 text-xs text-bolt-elements-textTertiary">
+          <span className="flex items-center gap-1 text-xs text-buildstack-elements-textTertiary">
             <Clock className="w-3 h-3" />
             {formatTimeAgo()}
           </span>
@@ -191,7 +191,7 @@ export function RepositoryCard({
     ? {
         onClick: onSelect,
         className: classNames(
-          'group cursor-pointer hover:border-bolt-elements-borderColorActive dark:hover:border-bolt-elements-borderColorActive transition-all duration-200',
+          'group cursor-pointer hover:border-buildstack-elements-borderColorActive dark:hover:border-buildstack-elements-borderColorActive transition-all duration-200',
           className,
         ),
       }
@@ -201,7 +201,7 @@ export function RepositoryCard({
     <Component
       {...interactiveProps}
       className={classNames(
-        'block p-4 rounded-lg bg-bolt-elements-background-depth-1 dark:bg-bolt-elements-background-depth-1 border border-bolt-elements-borderColor dark:border-bolt-elements-borderColor relative',
+        'block p-4 rounded-lg bg-buildstack-elements-background-depth-1 dark:bg-buildstack-elements-background-depth-1 border border-buildstack-elements-borderColor dark:border-buildstack-elements-borderColor relative',
         interactiveProps.className,
       )}
     >
@@ -216,44 +216,44 @@ export function RepositoryCard({
       <div className="space-y-3">
         <div className="flex items-start justify-between">
           <div className="flex items-center gap-2">
-            <GitBranch className="w-4 h-4 text-bolt-elements-icon-tertiary" />
+            <GitBranch className="w-4 h-4 text-buildstack-elements-icon-tertiary" />
             <h5
               className={classNames(
-                'text-sm font-medium text-bolt-elements-textPrimary',
-                onSelect && 'group-hover:text-bolt-elements-item-contentAccent transition-colors',
+                'text-sm font-medium text-buildstack-elements-textPrimary',
+                onSelect && 'group-hover:text-buildstack-elements-item-contentAccent transition-colors',
               )}
             >
               {repository.name}
             </h5>
             {repository.fork && (
               <span title="Forked repository">
-                <GitFork className="w-3 h-3 text-bolt-elements-textTertiary" />
+                <GitFork className="w-3 h-3 text-buildstack-elements-textTertiary" />
               </span>
             )}
             {repository.archived && (
               <span title="Archived repository">
-                <Archive className="w-3 h-3 text-bolt-elements-textTertiary" />
+                <Archive className="w-3 h-3 text-buildstack-elements-textTertiary" />
               </span>
             )}
           </div>
-          <div className="flex items-center gap-3 text-xs text-bolt-elements-textSecondary">
+          <div className="flex items-center gap-3 text-xs text-buildstack-elements-textSecondary">
             <span className="flex items-center gap-1" title="Stars">
-              <Star className="w-3.5 h-3.5 text-bolt-elements-icon-warning" />
+              <Star className="w-3.5 h-3.5 text-buildstack-elements-icon-warning" />
               {repository.stargazers_count.toLocaleString()}
             </span>
             <span className="flex items-center gap-1" title="Forks">
-              <GitFork className="w-3.5 h-3.5 text-bolt-elements-icon-info" />
+              <GitFork className="w-3.5 h-3.5 text-buildstack-elements-icon-info" />
               {repository.forks_count.toLocaleString()}
             </span>
             {showExtendedMetrics && repository.issues_count !== undefined && (
               <span className="flex items-center gap-1" title="Open Issues">
-                <Circle className="w-3.5 h-3.5 text-bolt-elements-icon-error" />
+                <Circle className="w-3.5 h-3.5 text-buildstack-elements-icon-error" />
                 {repository.issues_count}
               </span>
             )}
             {showExtendedMetrics && repository.pull_requests_count !== undefined && (
               <span className="flex items-center gap-1" title="Pull Requests">
-                <GitPullRequest className="w-3.5 h-3.5 text-bolt-elements-icon-success" />
+                <GitPullRequest className="w-3.5 h-3.5 text-buildstack-elements-icon-success" />
                 {repository.pull_requests_count}
               </span>
             )}
@@ -262,13 +262,13 @@ export function RepositoryCard({
 
         <div className="space-y-2">
           {repository.description && (
-            <p className="text-xs text-bolt-elements-textSecondary line-clamp-2">{repository.description}</p>
+            <p className="text-xs text-buildstack-elements-textSecondary line-clamp-2">{repository.description}</p>
           )}
 
           {/* Repository metrics bar */}
           <div className="flex items-center gap-2 text-xs">
             {repository.license && (
-              <span className="px-2 py-0.5 rounded-full bg-bolt-elements-background-depth-2 text-bolt-elements-textTertiary">
+              <span className="px-2 py-0.5 rounded-full bg-buildstack-elements-background-depth-2 text-buildstack-elements-textTertiary">
                 {repository.license.spdx_id || repository.license.name}
               </span>
             )}
@@ -282,12 +282,12 @@ export function RepositoryCard({
                 </span>
               ))}
             {repository.archived && (
-              <span className="px-2 py-0.5 rounded-full bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400">
+              <span className="px-2 py-0.5 rounded-full bg-buildstack-elements-background-depth-3 text-buildstack-elements-textSecondary">
                 Archived
               </span>
             )}
             {repository.fork && (
-              <span className="px-2 py-0.5 rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900/20 dark:text-purple-400">
+              <span className="px-2 py-0.5 rounded-full bg-gray-200 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400">
                 Fork
               </span>
             )}
@@ -295,7 +295,7 @@ export function RepositoryCard({
         </div>
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3 text-xs text-bolt-elements-textSecondary">
+          <div className="flex items-center gap-3 text-xs text-buildstack-elements-textSecondary">
             <span className="flex items-center gap-1" title="Default Branch">
               <GitBranch className="w-3.5 h-3.5" />
               {repository.default_branch}
@@ -346,7 +346,7 @@ export function RepositoryCard({
               <span
                 className={classNames(
                   'flex items-center gap-1 ml-2 transition-colors',
-                  'group-hover:text-bolt-elements-item-contentAccent',
+                  'group-hover:text-buildstack-elements-item-contentAccent',
                 )}
               >
                 <ExternalLink className="w-3.5 h-3.5" />

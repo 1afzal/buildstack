@@ -1,6 +1,6 @@
 import type { Message } from 'ai';
 import { generateId } from './fileUtils';
-import { detectProjectCommands, createCommandsMessage, escapeBoltTags } from './projectCommands';
+import { detectProjectCommands, createCommandsMessage, escapeBuildStackTags } from './projectCommands';
 
 export const createChatFromFolder = async (
   files: File[],
@@ -38,15 +38,15 @@ export const createChatFromFolder = async (
     role: 'assistant',
     content: `I've imported the contents of the "${folderName}" folder.${binaryFilesMessage}
 
-<boltArtifact id="imported-files" title="Imported Files" type="bundled" >
+<buildstackArtifact id="imported-files" title="Imported Files" type="bundled" >
 ${fileArtifacts
   .map(
-    (file) => `<boltAction type="file" filePath="${file.path}">
-${escapeBoltTags(file.content)}
-</boltAction>`,
+    (file) => `<buildstackAction type="file" filePath="${file.path}">
+${escapeBuildStackTags(file.content)}
+</buildstackAction>`,
   )
   .join('\n\n')}
-</boltArtifact>`,
+</buildstackArtifact>`,
     id: generateId(),
     createdAt: new Date(),
   };

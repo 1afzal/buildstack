@@ -191,15 +191,15 @@ export function FileIcon({ filename, size = 'md', className }: FileIconProps) {
     }
 
     if (['py', 'pyc', 'pyd', 'pyo'].includes(extension)) {
-      return 'text-green-500';
+      return 'text-buildstack-elements-icon-success';
     }
 
     if (['java', 'class', 'jar'].includes(extension)) {
-      return 'text-red-500';
+      return 'text-buildstack-elements-icon-error';
     }
 
     if (['php'].includes(extension)) {
-      return 'text-purple-500';
+      return 'text-gray-900';
     }
 
     if (['rb', 'ruby'].includes(extension)) {
@@ -223,7 +223,7 @@ export function FileIcon({ filename, size = 'md', className }: FileIconProps) {
     }
 
     if (['kt', 'kotlin'].includes(extension)) {
-      return 'text-purple-400';
+      return 'text-gray-400';
     }
 
     if (['dart'].includes(extension)) {
@@ -232,7 +232,7 @@ export function FileIcon({ filename, size = 'md', className }: FileIconProps) {
 
     // Config files
     if (['yml', 'yaml'].includes(extension)) {
-      return 'text-purple-300';
+      return 'text-gray-300';
     }
 
     if (['xml'].includes(extension)) {
@@ -252,12 +252,12 @@ export function FileIcon({ filename, size = 'md', className }: FileIconProps) {
     }
 
     if (['env', 'env.local', 'env.development', 'env.production'].includes(extension)) {
-      return 'text-green-500';
+      return 'text-buildstack-elements-icon-success';
     }
 
     // Document files
     if (['pdf'].includes(extension)) {
-      return 'text-red-500';
+      return 'text-buildstack-elements-icon-error';
     }
 
     if (['doc', 'docx'].includes(extension)) {
@@ -283,7 +283,7 @@ export function FileIcon({ filename, size = 'md', className }: FileIconProps) {
 
     // Audio/Video files
     if (['mp3', 'wav', 'ogg', 'flac', 'aac'].includes(extension)) {
-      return 'text-green-500';
+      return 'text-buildstack-elements-icon-success';
     }
 
     if (['mp4', 'avi', 'mov', 'wmv', 'flv', 'webm', 'mkv'].includes(extension)) {

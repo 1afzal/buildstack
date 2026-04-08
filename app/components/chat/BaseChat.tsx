@@ -4,6 +4,7 @@
  */
 import type { JSONValue, Message } from 'ai';
 import React, { type RefCallback, useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ClientOnly } from 'remix-utils/client-only';
 import { Menu } from '~/components/sidebar/Menu.client';
 import { Workbench } from '~/components/workbench/Workbench.client';
@@ -350,16 +351,55 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
         <ClientOnly>{() => <Menu />}</ClientOnly>
         <div className="flex flex-col lg:flex-row overflow-y-auto w-full h-full">
           <div className={classNames(styles.Chat, 'flex flex-col flex-grow lg:min-w-[var(--chat-min-width)] h-full')}>
-            {!chatStarted && (
-              <div id="intro" className="mt-[16vh] max-w-2xl mx-auto text-center px-4 lg:px-0">
-                <h1 className="text-3xl lg:text-6xl font-bold text-bolt-elements-textPrimary mb-4 animate-fade-in">
-                  Where ideas begin
-                </h1>
-                <p className="text-md lg:text-xl mb-8 text-bolt-elements-textSecondary animate-fade-in animation-delay-200">
-                  Bring ideas to life in seconds or get help on existing projects.
-                </p>
-              </div>
-            )}
+            <AnimatePresence>
+              {!chatStarted && (
+                <motion.div
+                  id="intro"
+                  className="mt-[10vh] max-w-4xl mx-auto text-center px-4 lg:px-0"
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={{
+                    hidden: {},
+                    visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+                    exit: { opacity: 0, y: -10, transition: { duration: 0.2 } },
+                  }}
+                >
+                  {/* Line 1 — Outfit Black (900) */}
+                  <motion.h1
+                    className="font-display text-5xl sm:text-7xl lg:text-[6rem] leading-[0.95] text-buildstack-elements-textPrimary mb-1 tracking-tight"
+                    variants={{
+                      hidden: { opacity: 0, y: 40 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+                    }}
+                  >
+                    BuildStack
+                  </motion.h1>
+                  {/* Line 2 — Outfit Black (900) */}
+                  <motion.h2
+                    className="font-display text-4xl sm:text-5xl lg:text-[4.5rem] leading-[0.95] text-buildstack-elements-textPrimary mb-8 tracking-tight"
+                    variants={{
+                      hidden: { opacity: 0, y: 32 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.16, 1, 0.3, 1] } },
+                    }}
+                  >
+                    Ship Ideas at Warp Speed
+                  </motion.h2>
+
+                  {/* Subtitle */}
+                  <motion.p
+                    className="text-sm sm:text-base lg:text-lg mb-8 text-buildstack-elements-textTertiary max-w-xl mx-auto leading-relaxed"
+                    variants={{
+                      hidden: { opacity: 0, y: 20 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
+                    }}
+                  >
+                    BuildStack is a next-gen AI code editor that combines speed, flexibility, and powerful customization
+                    for all your development needs.
+                  </motion.p>
+                </motion.div>
+              )}
+            </AnimatePresence>
             <StickToBottom
               className={classNames('pt-6 px-2 sm:px-6 relative', {
                 'h-full flex flex-col modern-scrollbar': chatStarted,
@@ -509,17 +549,25 @@ function ScrollToBottom() {
   const { isAtBottom, scrollToBottom } = useStickToBottomContext();
 
   return (
-    !isAtBottom && (
-      <>
-        <div className="sticky bottom-0 left-0 right-0 bg-gradient-to-t from-bolt-elements-background-depth-1 to-transparent h-20 z-10" />
-        <button
-          className="sticky z-50 bottom-0 left-0 right-0 text-4xl rounded-lg px-1.5 py-0.5 flex items-center justify-center mx-auto gap-2 bg-bolt-elements-background-depth-2 border border-bolt-elements-borderColor text-bolt-elements-textPrimary text-sm"
-          onClick={() => scrollToBottom()}
-        >
-          Go to last message
-          <span className="i-ph:arrow-down animate-bounce" />
-        </button>
-      </>
-    )
+    <AnimatePresence>
+      {!isAtBottom && (
+        <>
+          <div className="sticky bottom-0 left-0 right-0 bg-gradient-to-t from-buildstack-elements-background-depth-1 to-transparent h-20 z-10" />
+          <motion.button
+            initial={{ opacity: 0, y: 8, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.95 }}
+            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="sticky z-50 bottom-2 left-0 right-0 rounded-xl px-4 py-2 flex items-center justify-center mx-auto gap-2 bg-buildstack-elements-background-depth-2 border border-buildstack-elements-borderColor text-buildstack-elements-textSecondary text-sm font-medium shadow-lg shadow-black/5 backdrop-blur-sm"
+            onClick={() => scrollToBottom()}
+          >
+            Go to last message
+            <span className="i-ph:arrow-down animate-bounce" />
+          </motion.button>
+        </>
+      )}
+    </AnimatePresence>
   );
 }

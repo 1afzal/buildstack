@@ -51,7 +51,7 @@ export class EnhancedStreamingMessageParser extends StreamingMessageParser {
   }
 
   private _hasDetectedArtifacts(input: string): boolean {
-    return input.includes('<boltArtifact') || input.includes('</boltArtifact>');
+    return input.includes('<buildstackArtifact') || input.includes('</buildstackArtifact>');
   }
 
   private _detectAndWrapCodeBlocks(messageId: string, input: string): string {
@@ -204,21 +204,21 @@ export class EnhancedStreamingMessageParser extends StreamingMessageParser {
   private _wrapInArtifact(artifactId: string, filePath: string, content: string): string {
     const title = filePath.split('/').pop() || 'File';
 
-    return `<boltArtifact id="${artifactId}" title="${title}" type="bundled">
-<boltAction type="file" filePath="${filePath}">
+    return `<buildstackArtifact id="${artifactId}" title="${title}" type="bundled">
+<buildstackAction type="file" filePath="${filePath}">
 ${content}
-</boltAction>
-</boltArtifact>`;
+</buildstackAction>
+</buildstackArtifact>`;
   }
 
   private _wrapInShellAction(content: string, messageId: string): string {
     const artifactId = `artifact-${messageId}-${this._artifactCounter++}`;
 
-    return `<boltArtifact id="${artifactId}" title="Shell Command" type="shell">
-<boltAction type="shell">
+    return `<buildstackArtifact id="${artifactId}" title="Shell Command" type="shell">
+<buildstackAction type="shell">
 ${content.trim()}
-</boltAction>
-</boltArtifact>`;
+</buildstackAction>
+</buildstackArtifact>`;
   }
 
   private _normalizeFilePath(filePath: string): string {

@@ -146,20 +146,22 @@ const CloudProvidersTab = () => {
             <div
               className={classNames(
                 'w-8 h-8 flex items-center justify-center rounded-lg',
-                'bg-bolt-elements-background-depth-3',
-                'text-purple-500',
+                'bg-buildstack-elements-background-depth-3',
+                'text-gray-900',
               )}
             >
               <TbCloudComputing className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-md font-medium text-bolt-elements-textPrimary">Cloud Providers</h4>
-              <p className="text-sm text-bolt-elements-textSecondary">Connect to cloud-based AI models and services</p>
+              <h4 className="text-md font-medium text-buildstack-elements-textPrimary">Cloud Providers</h4>
+              <p className="text-sm text-buildstack-elements-textSecondary">
+                Connect to cloud-based AI models and services
+              </p>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-sm text-bolt-elements-textSecondary">Enable All Cloud</span>
+            <span className="text-sm text-buildstack-elements-textSecondary">Enable All Cloud</span>
             <Switch checked={categoryEnabled} onCheckedChange={handleToggleCategory} />
           </div>
         </div>
@@ -169,9 +171,9 @@ const CloudProvidersTab = () => {
             <motion.div
               key={provider.name}
               className={classNames(
-                'rounded-lg border bg-bolt-elements-background text-bolt-elements-textPrimary shadow-sm',
-                'bg-bolt-elements-background-depth-2',
-                'hover:bg-bolt-elements-background-depth-3',
+                'rounded-lg border bg-buildstack-elements-background text-buildstack-elements-textPrimary shadow-sm',
+                'bg-buildstack-elements-background-depth-2',
+                'hover:bg-buildstack-elements-background-depth-3',
                 'transition-all duration-200',
                 'relative overflow-hidden group',
                 'flex flex-col',
@@ -184,7 +186,7 @@ const CloudProvidersTab = () => {
               <div className="absolute top-0 right-0 p-2 flex gap-1">
                 {URL_CONFIGURABLE_PROVIDERS.includes(provider.name) && (
                   <motion.span
-                    className="px-2 py-0.5 text-xs rounded-full bg-purple-500/10 text-purple-500 font-medium"
+                    className="px-2 py-0.5 text-xs rounded-full bg-gray-900/10 text-gray-900 font-medium"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -197,9 +199,9 @@ const CloudProvidersTab = () => {
                 <motion.div
                   className={classNames(
                     'w-10 h-10 flex items-center justify-center rounded-xl',
-                    'bg-bolt-elements-background-depth-3 group-hover:bg-bolt-elements-background-depth-4',
+                    'bg-buildstack-elements-background-depth-3 group-hover:bg-buildstack-elements-background-depth-4',
                     'transition-all duration-200',
-                    provider.settings.enabled ? 'text-purple-500' : 'text-bolt-elements-textSecondary',
+                    provider.settings.enabled ? 'text-gray-900' : 'text-buildstack-elements-textSecondary',
                   )}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -215,10 +217,10 @@ const CloudProvidersTab = () => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between gap-4 mb-2">
                     <div>
-                      <h4 className="text-sm font-medium text-bolt-elements-textPrimary group-hover:text-purple-500 transition-colors">
+                      <h4 className="text-sm font-medium text-buildstack-elements-textPrimary group-hover:text-gray-900 transition-colors">
                         {provider.name}
                       </h4>
-                      <p className="text-xs text-bolt-elements-textSecondary mt-0.5">
+                      <p className="text-xs text-buildstack-elements-textSecondary mt-0.5">
                         {PROVIDER_DESCRIPTIONS[provider.name as keyof typeof PROVIDER_DESCRIPTIONS] ||
                           (URL_CONFIGURABLE_PROVIDERS.includes(provider.name)
                             ? 'Configure custom endpoint for this provider'
@@ -246,9 +248,9 @@ const CloudProvidersTab = () => {
                             placeholder={`Enter ${provider.name} base URL`}
                             className={classNames(
                               'flex-1 px-3 py-1.5 rounded-lg text-sm',
-                              'bg-bolt-elements-background-depth-3 border border-bolt-elements-borderColor',
-                              'text-bolt-elements-textPrimary placeholder-bolt-elements-textTertiary',
-                              'focus:outline-none focus:ring-2 focus:ring-purple-500/30',
+                              'bg-buildstack-elements-background-depth-3 border border-buildstack-elements-borderColor',
+                              'text-buildstack-elements-textPrimary placeholder-buildstack-elements-textTertiary',
+                              'focus:outline-none focus:ring-2 focus:ring-gray-900/30',
                               'transition-all duration-200',
                             )}
                             onKeyDown={(e) => {
@@ -266,9 +268,9 @@ const CloudProvidersTab = () => {
                             className="flex-1 px-3 py-1.5 rounded-lg text-sm cursor-pointer group/url"
                             onClick={() => setEditingProvider(provider.name)}
                           >
-                            <div className="flex items-center gap-2 text-bolt-elements-textSecondary">
+                            <div className="flex items-center gap-2 text-buildstack-elements-textSecondary">
                               <div className="i-ph:link text-sm" />
-                              <span className="group-hover/url:text-purple-500 transition-colors">
+                              <span className="group-hover/url:text-gray-900 transition-colors">
                                 {provider.settings.baseUrl || 'Click to set base URL'}
                               </span>
                             </div>
@@ -277,7 +279,7 @@ const CloudProvidersTab = () => {
                       </div>
 
                       {providerBaseUrlEnvKeys[provider.name]?.baseUrlKey && (
-                        <div className="mt-2 text-xs text-green-500">
+                        <div className="mt-2 text-xs text-buildstack-elements-icon-success">
                           <div className="flex items-center gap-1">
                             <div className="i-ph:info" />
                             <span>Environment URL set in .env file</span>
@@ -290,7 +292,7 @@ const CloudProvidersTab = () => {
               </div>
 
               <motion.div
-                className="absolute inset-0 border-2 border-purple-500/0 rounded-lg pointer-events-none"
+                className="absolute inset-0 border-2 border-gray-900/0 rounded-lg pointer-events-none"
                 animate={{
                   borderColor: provider.settings.enabled ? 'rgba(168, 85, 247, 0.2)' : 'rgba(168, 85, 247, 0)',
                   scale: provider.settings.enabled ? 1 : 0.98,

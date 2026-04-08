@@ -14,18 +14,18 @@ interface ModelCardProps {
 
 function ModelCard({ model, onUpdate, onDelete }: ModelCardProps) {
   return (
-    <Card className="bg-bolt-elements-background-depth-3 hover:bg-bolt-elements-background-depth-4 transition-all duration-200 shadow-sm hover:shadow-md border border-bolt-elements-borderColor hover:border-purple-500/20">
+    <Card className="bg-buildstack-elements-background-depth-3 hover:bg-buildstack-elements-background-depth-4 transition-all duration-200 shadow-sm hover:shadow-md border border-buildstack-elements-borderColor hover:border-gray-900/20">
       <CardContent className="p-5">
         <div className="flex items-center justify-between">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <h4 className="text-sm font-medium text-bolt-elements-textPrimary font-mono">{model.name}</h4>
+              <h4 className="text-sm font-medium text-buildstack-elements-textPrimary font-mono">{model.name}</h4>
               {model.status && model.status !== 'idle' && (
                 <span
                   className={classNames('px-2 py-0.5 rounded-full text-xs font-medium', {
                     'bg-yellow-500/10 text-yellow-500': model.status === 'updating',
-                    'bg-green-500/10 text-green-500': model.status === 'updated',
-                    'bg-red-500/10 text-red-500': model.status === 'error',
+                    'bg-green-500/10 text-buildstack-elements-icon-success': model.status === 'updated',
+                    'bg-red-500/10 text-buildstack-elements-icon-error': model.status === 'error',
                   })}
                 >
                   {model.status === 'updating' && 'Updating'}
@@ -34,7 +34,7 @@ function ModelCard({ model, onUpdate, onDelete }: ModelCardProps) {
                 </span>
               )}
             </div>
-            <div className="flex items-center gap-4 text-xs text-bolt-elements-textSecondary">
+            <div className="flex items-center gap-4 text-xs text-buildstack-elements-textSecondary">
               <div className="flex items-center gap-1">
                 <Code className="w-3 h-3" />
                 <span>{model.digest.substring(0, 8)}</span>
@@ -59,8 +59,8 @@ function ModelCard({ model, onUpdate, onDelete }: ModelCardProps) {
               disabled={model.status === 'updating'}
               className={classNames(
                 'flex items-center gap-2 px-3 py-2 text-xs rounded-lg transition-all duration-200',
-                'bg-purple-500/10 text-purple-500 hover:bg-purple-500/20 hover:shadow-sm',
-                'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-purple-500/10',
+                'bg-gray-900/10 text-gray-900 hover:bg-gray-900/20 hover:shadow-sm',
+                'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-900/10',
               )}
             >
               {model.status === 'updating' ? (
@@ -80,7 +80,7 @@ function ModelCard({ model, onUpdate, onDelete }: ModelCardProps) {
               disabled={model.status === 'updating'}
               className={classNames(
                 'flex items-center gap-2 px-3 py-2 text-xs rounded-lg transition-all duration-200',
-                'bg-red-500/10 text-red-500 hover:bg-red-500/20 hover:shadow-sm',
+                'bg-red-500/10 text-buildstack-elements-icon-error hover:bg-red-500/20 hover:shadow-sm',
                 'disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-red-500/10',
               )}
             >
@@ -91,7 +91,7 @@ function ModelCard({ model, onUpdate, onDelete }: ModelCardProps) {
         </div>
         {model.progress && (
           <div className="mt-3 space-y-2">
-            <div className="flex justify-between text-xs text-bolt-elements-textSecondary">
+            <div className="flex justify-between text-xs text-buildstack-elements-textSecondary">
               <span>{model.progress.status}</span>
               <span>{Math.round((model.progress.current / model.progress.total) * 100)}%</span>
             </div>
