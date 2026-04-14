@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "build/server/nodejs-*/**": {
-      "maxDuration": 60
-    }
-  },
   "headers": [
     {
       "source": "/(.*)",
