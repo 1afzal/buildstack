@@ -228,7 +228,7 @@ export function ConnectionTestIndicator({ status, message, timestamp, className 
       case 'testing':
         return 'bg-blue-50 border-blue-200 dark:bg-blue-900/20 dark:border-blue-700';
       default:
-        return 'bg-gray-50 border-gray-200 dark:bg-gray-900/20 dark:border-gray-700';
+        return 'bg-buildstack-elements-background-depth-2 border-buildstack-elements-borderColor';
     }
   };
 
