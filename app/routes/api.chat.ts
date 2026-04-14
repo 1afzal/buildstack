@@ -350,6 +350,16 @@ async function chatAction({ context: _context, request }: ActionFunctionArgs) {
         result.mergeIntoDataStream(dataStream);
       },
       onError: (error: any) => {
+        console.error(
+          '[CHAT_STREAM_ERROR]',
+          JSON.stringify({
+            message: error.message,
+            name: error.name,
+            cause: error.cause?.message || error.cause,
+            stack: error.stack?.split('\n').slice(0, 5).join('\n'),
+          }),
+        );
+
         // Provide more specific error messages for common issues
         const errorMessage = error.message || 'Unknown error';
 
@@ -431,6 +441,17 @@ async function chatAction({ context: _context, request }: ActionFunctionArgs) {
       },
     });
   } catch (error: any) {
+    console.error(
+      '[CHAT_CATCH_ERROR]',
+      JSON.stringify({
+        message: error.message,
+        name: error.name,
+        cause: error.cause?.message || error.cause,
+        statusCode: error.statusCode,
+        responseBody: error.responseBody,
+        stack: error.stack?.split('\n').slice(0, 5).join('\n'),
+      }),
+    );
     logger.error(error);
 
     const errorResponse = {
