@@ -1,4 +1,5 @@
 {
+  "buildCommand": "remix vite:build",
   "headers": [
     {
       "source": "/(.*)",
