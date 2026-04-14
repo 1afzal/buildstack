@@ -1,80 +1,128 @@
-import type { AppLoadContext } from '@remix-run/node';
+import type { AppLoadContext, EntryContext } from '@remix-run/node';
 import { RemixServer } from '@remix-run/react';
 import { isbot } from 'isbot';
-import { renderToReadableStream } from 'react-dom/server';
+import { renderToPipeableStream } from 'react-dom/server';
 import { renderHeadToString } from 'remix-island';
 import { Head } from './root';
 import { themeStore } from '~/lib/stores/theme';
+import { PassThrough } from 'node:stream';
+
+const ABORT_DELAY = 5_000;
 
 export default async function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: any,
+  remixContext: EntryContext,
   _loadContext: AppLoadContext,
 ) {
-  // await initializeModelList({});
+  const prohibitOutOfOrderStreaming = isbot(request.headers.get('user-agent') || '');
 
-  const readable = await renderToReadableStream(<RemixServer context={remixContext} url={request.url} />, {
-    signal: request.signal,
-    onError(error: unknown) {
-      console.error(error);
-      responseStatusCode = 500;
-    },
-  });
+  return new Promise((resolve, reject) => {
+    let shellRendered = false;
 
-  const body = new ReadableStream({
-    start(controller) {
-      const head = renderHeadToString({ request, remixContext, Head });
+    const { pipe, abort } = renderToPipeableStream(
+      <RemixServer context={remixContext} url={request.url} abortDelay={ABORT_DELAY} />,
+      {
+        onShellReady() {
+          if (prohibitOutOfOrderStreaming) {
+            return;
+          }
 
-      controller.enqueue(
-        new Uint8Array(
-          new TextEncoder().encode(
+          shellRendered = true;
+
+          const head = renderHeadToString({ request, remixContext, Head });
+          const body = new PassThrough();
+
+          // Write the opening HTML with head
+          body.write(
             `<!DOCTYPE html><html lang="en" data-theme="${themeStore.value}"><head>${head}</head><body><div id="root" class="w-full h-full">`,
-          ),
-        ),
-      );
+          );
 
-      const reader = readable.getReader();
+          pipe(body);
 
-      function read() {
-        reader
-          .read()
-          .then(({ done, value }) => {
-            if (done) {
-              controller.enqueue(new Uint8Array(new TextEncoder().encode('</div></body></html>')));
-              controller.close();
-
-              return;
-            }
-
-            controller.enqueue(value);
-            read();
-          })
-          .catch((error) => {
-            controller.error(error);
-            readable.cancel();
+          const stream = new ReadableStream({
+            start(controller) {
+              // Write opening HTML
+              body.on('data', (chunk) => {
+                controller.enqueue(typeof chunk === 'string' ? new TextEncoder().encode(chunk) : new Uint8Array(chunk));
+              });
+              body.on('end', () => {
+                controller.enqueue(new TextEncoder().encode('</div></body></html>'));
+                controller.close();
+              });
+              body.on('error', (err) => {
+                controller.error(err);
+              });
+            },
           });
-      }
-      read();
-    },
 
-    cancel() {
-      readable.cancel();
-    },
-  });
+          responseHeaders.set('Content-Type', 'text/html');
+          responseHeaders.set('Cross-Origin-Embedder-Policy', 'require-corp');
+          responseHeaders.set('Cross-Origin-Opener-Policy', 'same-origin');
 
-  if (isbot(request.headers.get('user-agent') || '')) {
-    await readable.allReady;
-  }
+          resolve(
+            new Response(stream, {
+              headers: responseHeaders,
+              status: responseStatusCode,
+            }),
+          );
+        },
+        onAllReady() {
+          if (!prohibitOutOfOrderStreaming) {
+            return;
+          }
 
-  responseHeaders.set('Content-Type', 'text/html');
+          shellRendered = true;
 
-  responseHeaders.set('Cross-Origin-Embedder-Policy', 'require-corp');
-  responseHeaders.set('Cross-Origin-Opener-Policy', 'same-origin');
+          const head = renderHeadToString({ request, remixContext, Head });
+          const body = new PassThrough();
 
-  return new Response(body, {
-    headers: responseHeaders,
-    status: responseStatusCode,
+          body.write(
+            `<!DOCTYPE html><html lang="en" data-theme="${themeStore.value}"><head>${head}</head><body><div id="root" class="w-full h-full">`,
+          );
+
+          pipe(body);
+
+          const stream = new ReadableStream({
+            start(controller) {
+              body.on('data', (chunk) => {
+                controller.enqueue(typeof chunk === 'string' ? new TextEncoder().encode(chunk) : new Uint8Array(chunk));
+              });
+              body.on('end', () => {
+                controller.enqueue(new TextEncoder().encode('</div></body></html>'));
+                controller.close();
+              });
+              body.on('error', (err) => {
+                controller.error(err);
+              });
+            },
+          });
+
+          responseHeaders.set('Content-Type', 'text/html');
+          responseHeaders.set('Cross-Origin-Embedder-Policy', 'require-corp');
+          responseHeaders.set('Cross-Origin-Opener-Policy', 'same-origin');
+
+          resolve(
+            new Response(stream, {
+              headers: responseHeaders,
+              status: responseStatusCode,
+            }),
+          );
+        },
+        onShellError(error: unknown) {
+          reject(error);
+        },
+        onError(error: unknown) {
+          responseStatusCode = 500;
+
+          if (shellRendered) {
+            console.error(error);
+          }
+        },
+      },
+    );
+
+    setTimeout(abort, ABORT_DELAY);
   });
 }
