@@ -20,17 +20,26 @@ export default defineConfig((config) => {
     build: {
       target: 'esnext',
     },
+    ssr: {
+      // Don't bundle these for server — use native Node.js modules
+      external: ['buffer', 'stream', 'util', 'events', 'path', 'crypto', 'fs', 'child_process'],
+    },
     plugins: [
-      nodePolyfills({
-        include: ['buffer', 'process'],
-        globals: {
-          Buffer: true,
-          process: true,
-          global: true,
-        },
-        protocolImports: true,
-        exclude: ['child_process', 'fs', 'path', 'util', 'stream'],
-      }),
+      // Only apply node polyfills to client (browser) build, not server
+      ...(!config.isSsrBuild
+        ? [
+            nodePolyfills({
+              include: ['buffer', 'process'],
+              globals: {
+                Buffer: true,
+                process: true,
+                global: true,
+              },
+              protocolImports: true,
+              exclude: ['child_process', 'fs', 'path', 'util', 'stream'],
+            }),
+          ]
+        : []),
       remixVitePlugin({
         presets: [vercelPreset()],
         future: {
