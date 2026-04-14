@@ -22,28 +22,15 @@ export default defineConfig((config) => {
     },
     plugins: [
       nodePolyfills({
-        include: ['buffer', 'process', 'stream'],
+        include: ['buffer', 'process'],
         globals: {
           Buffer: true,
           process: true,
           global: true,
         },
         protocolImports: true,
-        exclude: ['child_process', 'fs', 'path', 'util'],
+        exclude: ['child_process', 'fs', 'path', 'util', 'stream'],
       }),
-      {
-        name: 'buffer-polyfill',
-        transform(code, id) {
-          if (id.includes('env.mjs')) {
-            return {
-              code: `import { Buffer } from 'buffer';\n${code}`,
-              map: null,
-            };
-          }
-
-          return null;
-        },
-      },
       remixVitePlugin({
         presets: [vercelPreset()],
         future: {
