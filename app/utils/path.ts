@@ -2,6 +2,13 @@
 import type { ParsedPath } from 'path';
 import pathBrowserify from 'path-browserify';
 
+// Ensure process.cwd exists for path-browserify (it calls process.cwd() in relative())
+if (typeof globalThis.process === 'undefined') {
+  (globalThis as any).process = { cwd: () => '/', env: {} };
+} else if (typeof globalThis.process.cwd !== 'function') {
+  globalThis.process.cwd = () => '/';
+}
+
 /**
  * A browser-compatible path utility that mimics Node's path module
  * Using path-browserify for consistent behavior in browser environments
