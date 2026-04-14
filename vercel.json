@@ -1,5 +1,5 @@
 {
-  "buildCommand": "remix vite:build",
+  "buildCommand": "pnpm run build",
   "headers": [
     {
       "source": "/(.*)",
