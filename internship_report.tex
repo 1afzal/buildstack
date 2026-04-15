@@ -1,0 +1,1182 @@
+\documentclass[12pt,a4paper,openany]{report}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsfonts}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{fancyhdr}
+\linespread{1.5}
+\usepackage{geometry}
+\geometry{
+a4paper,
+total={210mm,297mm},
+left=1.25in,
+right=0.75in,
+top=0.75in,
+bottom=0.75in,
+}
+\setlength{\headheight}{14.5pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Chapter \thechapter}
+\lhead{BuildStack}
+\rfoot{Page \thepage}
+\lfoot{Dept. of ISE, SCEM, Mangaluru}
+
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{hyperref}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  backgroundcolor=\color{gray!10},
+  keywordstyle=\color{blue},
+  commentstyle=\color{green!50!black},
+  stringstyle=\color{red!60!black},
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  tabsize=2,
+  showstringspaces=false,
+}
+
+\begin{document}
+\pagestyle{empty}
+
+%=============== FRONT PAGE =================%
+\begin{center}
+{\large \textbf{VISVESVARAYA TECHNOLOGICAL UNIVERSITY}}
+\par
+\vspace{1pt}
+{\large \textbf{``JNANA SANGAMA'', BELAGAVI - 590 018}}
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=0.9in,height=1.0in]{../fig/vtu}
+\end{figure}
+\\
+\textbf{A REPORT ON INTERNSHIP}
+\par
+\vspace{4pt}
+\textit{Carried out at}
+\par
+\vspace{2pt}
+{\large \textbf{Novigo Solutions Pvt Ltd}}
+\par
+\vspace{4pt}
+\textit{Submitted by}
+\par
+\vspace{10pt}
+\textbf{\large Afzal Ali Ahmed}\hspace{2.0in}\textbf{\large 4SF22IS007}\\
+\par
+\vspace{6pt}
+\textit{\textbf{In partial fulfillment of the requirements for the VIII Semester of}}
+\par
+\vspace{2pt}
+{\large \textbf{BACHELOR OF ENGINEERING}}
+\par
+\vspace{2pt}
+\textbf{In}
+\par
+\vspace{2pt}
+{\large \textbf{INFORMATION SCIENCE \& ENGINEERING}}
+\par
+\vspace{6pt}
+\textit{\textbf{Under the Guidance of}}
+\par
+\vspace{8pt}
+\begin{tabular}{>{\centering\arraybackslash}p{0.45\textwidth} >{\centering\arraybackslash}p{0.45\textwidth}}
+\textbf{Internal Guide} & \textbf{External Guide} \\[2pt]
+\textbf{Dr. Shamantha Rai B} & \textbf{Mr. Rilwan ul Haq} \\[2pt]
+Professor, & Senior Software Engineer, \\[2pt]
+SCEM, Mangaluru & Novigo Solutions Pvt Ltd \\
+\end{tabular}
+
+\vspace{0.2in}
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=1.25in,height=1.0in]{../fig/sahyadri}
+\end{figure}
+{\LARGE \textbf{SAHYADRI}}
+\par
+\vspace{2pt}
+{\large \textbf{College of Engineering \& Management}}
+\par
+\vspace{1pt}
+{\large \textbf{An Autonomous Institution Adyar,}}
+\par
+\vspace{2pt}
+{\large \textbf{Mangaluru - 575 007}}
+\par
+\vspace{3pt}
+{\large \textbf{AY: 2025 - 26}}
+\end{center}
+
+%=============== CERTIFICATE =================%
+\newpage
+\begin{center}
+{\LARGE \textbf{SAHYADRI}}
+\par
+\vspace{2pt}
+{\Large \textbf{College of Engineering \& Management}}
+\par
+\vspace{1pt}
+{\large \textbf{An Autonomous Institution Adyar,}}
+\par
+\vspace{1pt}
+{\large \textbf{Mangaluru - 575 007}}
+\par
+\vspace{0.20in}
+{\large \textbf{DEPARTMENT OF INFORMATION SCIENCE \& ENGINEERING}}
+\par
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=1.25in,height=1in]{../fig/sahyadri}
+\end{figure}
+{\Large \textbf{CERTIFICATE}}
+\end{center}
+\par
+\vspace{0.10in}
+\setstretch{1.5}
+\noindent This is to certify that the internship has been carried out by \textbf{Afzal Ali Ahmed} bearing \textbf{4SF22IS007}, the bonafide student of Sahyadri College of Engineering \& Management, Mangaluru at \textbf{Novigo Solutions Pvt Ltd} from \textbf{19-01-2026} to \textbf{19-04-2026} in partial fulfilment of the requirements for the \textbf{VIII Semester} of \textbf{Bachelor of Engineering} in \textbf{Information Science Engineering} of Visvesvaraya Technological University, Belagavi during the academic year 2025-26. It is certified that all corrections/suggestions indicated for Internal Assessment have been incorporated in the report deposited in the internal library. The internship report has been approved as it satisfies the academic requirements as per university guidelines.
+
+\par
+\vspace{0.35in}
+\setstretch{1.15}
+
+\begin{tabbing}
+---------------------------------\hspace{0.5in}\=---------------------------------\hspace{0.4in}\=----------------------------\\
+\hspace{0.10in}\textbf{Internal Guide}\>\hspace{0.60in}\textbf{HoD.}\>\hspace{0.25in}\textbf{Internship Coordinator}\\
+\hspace{0.10in}\textbf{Dr. Shamantha Rai B}\>\hspace{0.05in}\textbf{Dr. Rithesh Pakkala P.}\>\hspace{0.50in}\textbf{Mrs. Madhu R.}\\
+\hspace{0.25in}Professor\>\hspace{0.25in}Associate Professor\>\hspace{0.40in}Assistant Professor\\
+\hspace{0.25in}ISE, SCEM.\>\hspace{0.25in}Dept. of ISE, SCEM\>\hspace{0.70in}ISE, SCEM\\
+\end{tabbing}
+
+\vspace{0.3in}
+\noindent \textbf{Viva:}
+
+\vspace{0.2in}
+\noindent \textbf{Name of the Examiner} \hspace{1.8in} \textbf{Signature with Date}
+
+\vspace{0.15in}
+\noindent 1. \dotfill \hspace{0.3in} 1. \dotfill
+
+\vspace{0.15in}
+\noindent 2. \dotfill \hspace{0.3in} 2. \dotfill
+
+%=============== DECLARATION =================%
+\newpage
+\begin{center}
+{\LARGE \textbf{SAHYADRI}}
+\par
+\vspace{6pt}
+{\Large \textbf{College of Engineering \& Management}}
+\par
+\vspace{1pt}
+{\large \textbf{An Autonomous Institution Adyar,}}
+\par
+\vspace{3pt}
+{\large \textbf{Mangaluru - 575 007}}
+\par
+\vspace{0.20in}
+{\large \textbf{DEPARTMENT OF INFORMATION SCIENCE \& ENGINEERING}}
+\par
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=1.25in,height=1in]{../fig/sahyadri}
+\end{figure}
+{\Large \textbf{DECLARATION}}
+\end{center}
+\par
+\vspace{0.10in}
+\setstretch{1.5}
+\noindent I hereby declare that the entire work embodied in this Internship Report and the project entitled \textbf{``BuildStack --- AI-Powered Full-Stack Web Development Platform''} as a part of internship has been completed by me at \textbf{Novigo Solutions Pvt Ltd} under the supervision of \textbf{Dr. Shamantha Rai B} and \textbf{Mr. Rilwan ul Haq}, in partial fulfillment of the requirements for the VIII Semester of \textbf{Bachelor of Engineering} in \textbf{Information Science \& Engineering}. This report has not been submitted to this or any other University for the award of any other degree.\\
+
+\vspace{0.3in}
+
+\noindent
+\begin{minipage}[t]{0.45\textwidth}
+\setstretch{1.5}
+Place:\\
+Mangaluru\\
+Date:
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+\setstretch{1.5}
+\begin{flushright}
+\textbf{Afzal Ali Ahmed}\\
+4SF22IS007\\
+VIII Semester, B.E.,\\
+ISE SCEM,\\
+Mangaluru
+\end{flushright}
+\end{minipage}
+
+%=============== EXECUTIVE SUMMARY =================%
+\newpage
+\pagestyle{plain}
+\pagenumbering{roman}
+\chapter*{Executive Summary}
+\addcontentsline{toc}{chapter}{\numberline{}Executive Summary}
+\setstretch{1.5}
+
+This internship report presents the design, development, and deployment of \textbf{BuildStack}, an open-source, AI-powered full-stack web development platform that operates entirely within a web browser, carried out at \textbf{Novigo Solutions Pvt Ltd} from 19th January 2026 to 19th April 2026. The primary objective of the project was to create a comprehensive development environment that leverages Large Language Models (LLMs) to assist developers in building, testing, and deploying Node.js-based web applications without requiring any local development setup. The platform integrates over 19 LLM providers --- including OpenAI, Anthropic, Google Gemini, Groq, Mistral, DeepSeek, Ollama, and others --- through the Vercel AI SDK, enabling users to select the AI model best suited to their needs. The work carried out during the internship involved building a full-stack application using the Remix framework with React 18 on the frontend, a comprehensive API layer on the backend, and StackBlitz's WebContainer API for sandboxed in-browser code execution. Key features developed include a real-time streaming chat interface for interacting with AI models, a fully integrated code editor built on CodeMirror 6 with syntax highlighting for over 10 programming languages, an embedded terminal powered by xterm.js, a live preview system with responsive device frames, Git integration via isomorphic-git and the Octokit library, one-click deployment to Netlify, Vercel, and GitHub Pages, Supabase database integration for backend data management, a Model Context Protocol (MCP) tool system for extensible AI capabilities, and an Electron-based desktop application for native cross-platform usage. The technology stack includes TypeScript, UNO CSS for styling, Nanostores for reactive state management, Radix UI for accessible component primitives, and Docker for containerized deployment. The final outcome is a production-ready, community-driven platform that democratizes web development by making AI-assisted coding accessible to developers of all skill levels, while the internship provided extensive hands-on experience in modern full-stack web development, AI integration, real-time streaming architectures, and open-source software engineering practices.
+
+%=============== ACKNOWLEDGEMENT =================%
+\newpage
+{\setlength{\parskip}{4pt}
+\chapter*{Acknowledgement}
+\addcontentsline{toc}{chapter}{\numberline{}Acknowledgement}
+\setstretch{1.3}
+It is with great satisfaction and euphoria that I am submitting a report on internship carried out at \textbf{Novigo Solutions Pvt Ltd} as a part of the curriculum of Information Science \& Engineering at Sahyadri College of Engineering \& Management, Mangaluru, An Autonomous Institution, Affiliated to Visvesvaraya Technological University, Belagavi in partial fulfillment of the requirements for the VIII semester of Bachelor of Engineering.
+\par
+\noindent I am profoundly indebted to my Internal guide, \textbf{Dr.~Shamantha Rai B}, Professor, Department of Information Science \& Engineering and External guide \textbf{Mr.~Rilwan ul Haq}, \textbf{Novigo Solutions Pvt Ltd} for their invaluable support and guidance and I sincerely express my gratitude.
+\par
+\noindent I also thank \textbf{Mrs.~Madhu R}, Assistant Professor \& Internship Coordinator, Department of Information Science \& Engineering for the constant encouragement and support extended throughout.
+\par
+\noindent I express my sincere gratitude to \textbf{Dr.~Rithesh Pakkala P.}, Associate Professor \& Head, Department of Information Science \& Engineering and CSE (Data Science) for his innumerable acts of timely advice and encouragement.
+\par
+\noindent I would like to extend my sincere thanks to \textbf{Dr.~Shamantha Rai B}, Professor-ISE \& Dean Academics, Sahyadri College of Engineering \& Management, for his valuable guidance and continuous support during the course of this Internship.
+\par
+\noindent I sincerely thank \textbf{Dr.~Sudheer Shetty}, Professor-ISE \& Vice Principal, Sahyadri College of Engineering \& Management, who has constantly motivated me throughout the internship work.
+\par
+\noindent I sincerely thank \textbf{Dr.~S. S. Injaganeri}, Principal, Sahyadri College of Engineering \& Management who has always been a great source of inspiration.
+\par
+\noindent Finally, yet importantly, I express my heartfelt thanks to my family and friends for their wishes and encouragement throughout the work.
+\vspace{0.3in}
+\begin{flushright}
+\textbf{Afzal Ali Ahmed (4SF22IS007)}\\
+\end{flushright}
+}
+
+%=============== TABLE OF CONTENTS =================%
+\setstretch{1.4}
+\renewcommand{\contentsname}{Table of Contents}
+\tableofcontents
+\addcontentsline{toc}{chapter}{\numberline{}Table of Contents}
+\newpage
+
+%=============== LIST OF TABLES =================%
+\listoftables
+\addcontentsline{toc}{chapter}{\numberline{}List of Tables}
+\newpage
+
+%=============== MAIN CHAPTERS =================%
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{BuildStack}
+\rhead{Chapter \thechapter}
+\lfoot{Dept. of ISE, SCEM, Mangaluru}
+\rfoot{Page \thepage}
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+\setstretch{1.5}
+\pagenumbering{arabic}
+
+%=============== CHAPTER 1 =================%
+\chapter{Organization Details}
+
+\section{Introduction to the Organization}
+
+\textbf{Novigo Solutions Pvt Ltd} is a technology-driven software services and product development company based in India. The organization specializes in delivering innovative digital solutions across multiple domains, including web application development, mobile application development, enterprise software, cloud computing, and artificial intelligence. With a strong focus on cutting-edge technologies and modern development practices, Novigo Solutions has established itself as a reliable partner for businesses seeking to digitize their operations and build scalable software products.
+
+The company operates with a vision of empowering businesses and developers through technology, fostering innovation, and delivering high-quality software solutions that address real-world challenges. Novigo Solutions embraces modern agile development methodologies, promotes open-source contributions, and invests in research and development of AI-powered tools that enhance developer productivity and software quality.
+
+Novigo Solutions maintains a collaborative work culture that encourages continuous learning, knowledge sharing, and hands-on experience with emerging technologies. The organization provides internship opportunities to engineering students, allowing them to work on production-grade projects and gain practical industry experience alongside experienced professionals.
+
+During the internship period at Novigo Solutions, I was assigned to work on \textbf{BuildStack} --- an open-source, AI-powered full-stack web development platform that runs entirely in the browser. BuildStack leverages StackBlitz's WebContainer technology and supports over 19 Large Language Model (LLM) providers. It offers a comprehensive integrated development environment (IDE) featuring a code editor, terminal, live preview, Git integration, and one-click deployment to major cloud platforms. The project is hosted on GitHub under the MIT License and is actively maintained by a community of contributors.
+
+\section{Services and Products}
+
+Novigo Solutions Pvt Ltd offers a wide range of technology services and products. During the internship, the primary focus was on the \textbf{BuildStack Platform}, which offers the following services and capabilities:
+
+\subsection{AI-Powered Web Development Platform}
+The flagship product is a browser-based development environment that combines the power of artificial intelligence with a full-featured IDE. Users can interact with AI models through a conversational chat interface, describe their application requirements in natural language, and have the AI generate complete project code, install dependencies, and run the application --- all within the browser. The platform supports Node.js-based web applications and provides real-time code editing, terminal access, and live preview functionality.
+
+\subsection{Multi-Provider LLM Integration}
+BuildStack integrates with over 19 LLM providers, giving users the flexibility to choose the AI model that best fits their needs and budget. Supported providers include:
+\begin{itemize}
+    \item \textbf{Cloud Providers:} OpenAI (GPT-4, GPT-3.5), Anthropic (Claude 3.5 Sonnet, Claude 3 Opus), Google (Gemini 1.5 Pro, Gemini 1.5 Flash), Groq, xAI (Grok), DeepSeek, Mistral, Cohere, Together AI, Perplexity, HuggingFace, OpenRouter, Moonshot (Kimi), Hyperbolic, GitHub Models, and Amazon Bedrock.
+    \item \textbf{Local Providers:} Ollama, LM Studio, and OpenAI-compatible API endpoints for running models locally without sending data to external servers.
+\end{itemize}
+
+\subsection{Deployment Services}
+The platform provides one-click deployment to multiple cloud hosting services including Netlify, Vercel, and GitHub Pages. This allows users to go from idea to a live, publicly accessible website in a single workflow, without leaving the BuildStack environment.
+
+\subsection{Desktop Application}
+BuildStack is available as an Electron-based desktop application for macOS, Windows, and Linux, providing a native desktop experience with all the features of the web version, plus additional capabilities such as auto-updates and local file system access.
+
+\subsection{Database Integration}
+Through its Supabase integration, BuildStack provides built-in database management capabilities, allowing users to create tables, write migrations, execute queries, and manage row-level security policies directly through AI-assisted workflows.
+
+\section{Your Role and Department}
+
+During the internship at Novigo Solutions Pvt Ltd, I was assigned to the \textbf{Core Platform Engineering} team, which is responsible for the design, development, and maintenance of the BuildStack platform's core functionality. My role encompassed full-stack development responsibilities across both the frontend and backend of the application.
+
+\subsection{Key Responsibilities}
+\begin{itemize}
+    \item \textbf{Frontend Development:} Designing and implementing React components for the chat interface, code editor, workbench, and settings panels using TypeScript, Remix, and UNO CSS.
+    \item \textbf{Backend API Development:} Building and maintaining RESTful API endpoints for AI model integration, Git operations, deployment workflows, and database management using the Remix server-side action and loader pattern.
+    \item \textbf{AI Integration:} Implementing the multi-provider LLM architecture using the Vercel AI SDK, including streaming responses, token management, context optimization, and error recovery mechanisms.
+    \item \textbf{State Management:} Designing and implementing the application's reactive state management layer using Nanostores, including stores for chat history, editor state, file management, theme preferences, and service integrations.
+    \item \textbf{Testing and Quality Assurance:} Writing unit tests using Vitest, performing code reviews, running linting and type-checking workflows, and ensuring code quality through ESLint and Prettier configurations.
+    \item \textbf{DevOps and Deployment:} Configuring Docker multi-stage builds, Cloudflare Workers deployment, Vercel hosting setup, and Electron desktop application packaging for cross-platform distribution.
+\end{itemize}
+
+%=============== CHAPTER 2 =================%
+\chapter{Problem Definition}
+
+\section{Problem Background}
+
+The modern software development landscape presents several significant challenges that hinder developer productivity and create barriers to entry for newcomers:
+
+\subsection{Complex Development Environment Setup}
+Setting up a local development environment for modern web applications is a non-trivial task. Developers must install and configure multiple tools --- Node.js, package managers (npm, yarn, or pnpm), version managers (nvm), code editors, linters, formatters, build tools, and often Docker for containerized services. This setup process can take hours, varies significantly across operating systems, and frequently leads to environment-specific bugs that are difficult to diagnose. For beginners and students, this complexity represents a significant barrier to entry.
+
+\subsection{Fragmented Development Workflow}
+The typical development workflow involves switching between multiple disconnected tools: a code editor, a terminal, a browser for previewing, a Git client for version control, a deployment dashboard for hosting, and a database management tool. This fragmentation increases cognitive overhead, context-switching costs, and the likelihood of errors.
+
+\subsection{Underutilization of AI in Development}
+While Large Language Models (LLMs) have demonstrated remarkable capabilities in code generation, debugging, and documentation, their integration into the development workflow remains fragmented. Most developers interact with AI through separate chat interfaces (such as ChatGPT or Claude) and then manually copy-paste generated code into their editors. This disconnected approach loses context, introduces errors during transfer, and fails to leverage the AI's ability to directly execute and test the code it generates.
+
+\subsection{Vendor Lock-in and Limited Model Choice}
+Many existing AI-powered development tools are tightly coupled to a single LLM provider, limiting users' flexibility to choose models based on performance, cost, or privacy requirements. Additionally, some users require the ability to run models locally (using Ollama or LM Studio) for data privacy or offline development, which most commercial tools do not support.
+
+\subsection{Deployment Complexity}
+Deploying web applications to production hosting involves multiple manual steps: building the application, configuring hosting platforms, managing environment variables, and monitoring deployment status. This process is error-prone and time-consuming, especially for developers who are not DevOps specialists.
+
+\section{Problem Statement}
+
+The core problem addressed during this internship can be formally stated as follows:
+
+\textit{To design and develop an open-source, AI-powered, browser-based full-stack web development platform that integrates a conversational AI interface with a complete development environment --- including a code editor, terminal, live preview, version control, and deployment capabilities --- while supporting multiple LLM providers and enabling users to build, test, and deploy Node.js web applications entirely within the browser without any local environment setup.}
+
+\subsection{Specific Objectives}
+The internship project aimed to achieve the following specific objectives:
+
+\begin{enumerate}
+    \item \textbf{Browser-Based Execution Environment:} Implement an in-browser Node.js runtime using StackBlitz's WebContainer API that can execute JavaScript/TypeScript code, install npm packages, run development servers, and serve live previews without requiring any server-side computation.
+
+    \item \textbf{Multi-Provider AI Integration:} Design a pluggable provider architecture that supports 19+ LLM providers through the Vercel AI SDK, allowing users to seamlessly switch between cloud-based and locally-hosted AI models.
+
+    \item \textbf{Real-Time Streaming Chat Interface:} Build a chat interface that supports Server-Sent Events (SSE) streaming, enabling real-time display of AI-generated code and responses with progress tracking, token usage monitoring, and error recovery.
+
+    \item \textbf{Integrated Development Environment:} Develop a comprehensive IDE within the browser featuring a CodeMirror 6-based code editor with multi-language syntax highlighting, a file explorer with tree navigation, an xterm.js-powered terminal, and a responsive live preview with device frame simulation.
+
+    \item \textbf{Version Control Integration:} Implement Git functionality using isomorphic-git and the GitHub/GitLab APIs, enabling repository cloning, branch management, and code import/export directly within the platform.
+
+    \item \textbf{One-Click Deployment:} Create deployment integrations with Netlify, Vercel, and GitHub Pages that allow users to deploy their applications to production with a single click, including automatic framework detection and build configuration.
+
+    \item \textbf{Database Integration:} Integrate Supabase for backend database management, including table creation, SQL migration management, query execution, and row-level security configuration.
+
+    \item \textbf{Cross-Platform Desktop Application:} Package the platform as an Electron desktop application for macOS, Windows, and Linux, providing native desktop experience with auto-update capabilities.
+
+    \item \textbf{Security and Performance:} Implement comprehensive security measures including rate limiting, CORS protection, Content Security Policy headers, API key validation, and AES-CBC encryption for sensitive data, alongside performance optimizations such as context-aware file selection and stream recovery mechanisms.
+\end{enumerate}
+
+%=============== CHAPTER 3 =================%
+\chapter{Work Carried Out}
+
+\section{Methodology}
+
+The development of BuildStack followed an \textbf{Agile development methodology} with iterative sprints, continuous integration, and community-driven feature prioritization. The methodology comprised the following phases:
+
+\subsection{Phase 1: Requirements Analysis and Architecture Design}
+The initial phase involved studying the existing landscape of AI-powered development tools, identifying gaps in current solutions, and defining the technical architecture for the platform. Key architectural decisions made during this phase included:
+\begin{itemize}
+    \item Selecting \textbf{Remix} as the full-stack React framework for its server-side rendering capabilities, nested routing, and built-in support for streaming responses.
+    \item Choosing \textbf{WebContainer API} for in-browser code execution to eliminate the need for server-side compute resources.
+    \item Adopting the \textbf{Vercel AI SDK} as the unified abstraction layer for multi-provider LLM integration.
+    \item Using \textbf{Nanostores} for lightweight, reactive state management instead of heavier alternatives like Redux.
+    \item Selecting \textbf{UNO CSS} (Tailwind-compatible atomic CSS engine) for styling to ensure consistency and performance.
+\end{itemize}
+
+\subsection{Phase 2: Core Platform Development}
+The second phase focused on building the foundational components of the platform, including the chat interface, code editor, terminal, and file management system. This phase followed a component-driven development approach, building reusable UI components first and then composing them into larger features.
+
+\subsection{Phase 3: AI Integration and Streaming}
+The third phase involved implementing the multi-provider LLM architecture, the streaming chat system, and the intelligent context management system. This was the most technically challenging phase, requiring deep understanding of Server-Sent Events, token management, and error recovery patterns.
+
+\subsection{Phase 4: Integration and Deployment Features}
+The fourth phase added Git integration, deployment capabilities (Netlify, Vercel, GitHub Pages), database integration (Supabase), and the Model Context Protocol (MCP) tool system.
+
+\subsection{Phase 5: Testing, Optimization, and Documentation}
+The final phase focused on comprehensive testing, performance optimization, security hardening, and documentation for both developers and end-users.
+
+\section{Tasks Performed}
+
+\subsection{Task 1: Frontend Architecture and Component Development}
+
+The frontend of BuildStack was developed using \textbf{React 18.3.1} with the \textbf{Remix 2.15.2} framework and \textbf{TypeScript 5.7.2} for type-safe development. The component architecture comprises over 207 React components organized into a modular directory structure.
+
+\subsubsection{Chat Interface Implementation}
+The chat interface is the primary user interaction point with the AI. It consists of 38 specialized components in the \texttt{app/components/chat/} directory. The core components include:
+
+\begin{itemize}
+    \item \textbf{BaseChat.tsx:} The main layout wrapper that composes the chat area alongside the workbench (code editor and preview). It manages the responsive split-pane layout using \texttt{react-resizable-panels}.
+    \item \textbf{Chat.client.tsx:} The client-side chat wrapper that handles chat history loading from IndexedDB, URL-based chat routing, and initialization of the streaming connection.
+    \item \textbf{Messages.client.tsx:} Renders the message list with support for message forking (branching conversations) and rewinding to earlier states. Each message is differentiated as either a user message or an assistant message.
+    \item \textbf{AssistantMessage.tsx:} Renders AI responses with full Markdown support (via \texttt{react-markdown} with \texttt{remark-gfm}), syntax-highlighted code blocks (via Shiki), tool invocation visualization, artifact links, and token usage annotations.
+    \item \textbf{ChatBox.tsx:} The input area featuring a model selector dropdown, API key management, file upload support, screenshot capture, speech recognition for voice prompting, web search integration, and MCP tools selection.
+    \item \textbf{ModelSelector.tsx:} A searchable dropdown component that allows users to browse and select from all available models across 19+ providers, with support for filtering by provider type and fuzzy search.
+\end{itemize}
+
+\subsubsection{Code Editor and Workbench}
+The workbench provides a full-featured IDE experience within the browser. Key components include:
+
+\begin{itemize}
+    \item \textbf{CodeMirrorEditor.tsx:} A comprehensive code editor built on CodeMirror 6, supporting 10+ programming languages (JavaScript, TypeScript, Python, HTML, CSS, JSON, Markdown, Vue, C++, WebAssembly), with features including auto-completion, bracket matching, fold gutters, undo/redo history, line numbers, and a custom VS Code-inspired dark theme. The editor also implements environment variable masking for security.
+    \item \textbf{FileTree.tsx:} A hierarchical file explorer with expand/collapse functionality, file type icons, and direct file selection for editing.
+    \item \textbf{Preview.tsx:} A live preview component that renders the running application in an iframe via the WebContainer, featuring 12 responsive device presets (iPhone SE through desktop monitors), viewport resizing, port selection, screenshot capture, fullscreen mode, and an element inspector for examining rendered HTML.
+    \item \textbf{Terminal.tsx:} An integrated terminal powered by xterm.js 5.5.0, supporting multiple terminal tabs, light/dark theme switching, and direct interaction with the WebContainer's shell process.
+    \item \textbf{DiffView.tsx:} A code difference visualization component that uses the \texttt{diff} library to show unified diffs of AI-made changes, enabling users to review modifications before accepting them.
+\end{itemize}
+
+\subsubsection{Settings and Configuration Panels}
+The settings system comprises over 50 components in the \texttt{app/components/@settings/} directory, organized into dedicated panels for:
+\begin{itemize}
+    \item Cloud and local LLM provider management with API key configuration
+    \item GitHub and GitLab authentication and repository management
+    \item Netlify and Vercel deployment configuration
+    \item Supabase database connection and project management
+    \item MCP (Model Context Protocol) server configuration
+    \item Theme customization with light/dark mode support
+\end{itemize}
+
+\subsubsection{UI Component Library}
+A custom UI component library of 40+ components was built in \texttt{app/components/ui/}, wrapping Radix UI primitives (Dialog, Popover, Dropdown Menu, Tabs, Checkbox, Switch, Tooltip, Scroll Area, Progress, Context Menu, Collapsible) with custom styling using \texttt{class-variance-authority} for variant management and \texttt{tailwind-merge} for className composition.
+
+\subsection{Task 2: Backend API Architecture}
+
+The backend was built using Remix's server-side action and loader pattern, providing over 33 API endpoints organized in the \texttt{app/routes/} directory.
+
+\subsubsection{Core Chat API (\texttt{/api/chat})}
+The most complex API endpoint, the chat API handles streaming AI responses through a multi-stage pipeline:
+
+\begin{enumerate}
+    \item \textbf{Request Parsing:} Extracts messages, file context, provider settings, and user preferences from the request body and cookies.
+    \item \textbf{MCP Tool Processing:} If MCP tools are configured, registers and invokes external tools within the streaming context.
+    \item \textbf{Context Optimization:} When enabled, uses a secondary LLM call to generate a conversation summary and intelligently select the 5 most relevant files from the project context, reducing token usage while maintaining response quality.
+    \item \textbf{Stream Initialization:} Creates a \texttt{SwitchableStream} that manages multi-segment responses, supporting automatic continuation when the AI reaches its token limit (up to 2 response segments with 128,000 max tokens).
+    \item \textbf{Response Streaming:} Streams the AI response as Server-Sent Events (SSE), with progress annotations for each stage (summary generation, context selection, response streaming).
+    \item \textbf{Token Usage Tracking:} Accumulates and reports token usage across all response segments, providing cumulative completion, prompt, and total token counts.
+    \item \textbf{Error Recovery:} Employs a \texttt{StreamRecoveryManager} that monitors for stream timeouts (45-second threshold) and automatically retries failed streams up to 2 times.
+\end{enumerate}
+
+\subsubsection{LLM Provider API (\texttt{/api/models}, \texttt{/api/llmcall})}
+\begin{itemize}
+    \item \textbf{\texttt{/api/models}:} Returns a cached list of available models across all configured providers, with support for dynamic model discovery from providers like Ollama and OpenRouter.
+    \item \textbf{\texttt{/api/llmcall}:} A direct LLM invocation endpoint supporting both streaming and non-streaming modes, with automatic detection of reasoning models (GPT-o1, GPT-o3, GPT-5) and dynamic token parameter validation.
+    \item \textbf{\texttt{/api/enhancer}:} A prompt enhancement service that uses an LLM to improve user prompts before sending them to the main chat endpoint.
+\end{itemize}
+
+\subsubsection{Git Integration APIs}
+\begin{itemize}
+    \item \textbf{\texttt{/api/github-user}:} Handles GitHub authentication and provides operations including user profile retrieval, repository listing with pagination (100 repos per page), branch listing, and repository search.
+    \item \textbf{\texttt{/api/git-proxy.\$}:} A CORS proxy that forwards Git HTTP requests to remote repositories, supporting both stdio and HTTP transports with custom header injection for authentication.
+    \item \textbf{\texttt{/api/gitlab-projects}, \texttt{/api/gitlab-branches}:} GitLab API integration for project and branch management.
+\end{itemize}
+
+\subsubsection{Deployment APIs}
+\begin{itemize}
+    \item \textbf{\texttt{/api/netlify-deploy}:} Implements the complete Netlify deployment pipeline --- site creation, SHA1 file digest calculation, deploy creation, polling for prepared state, multi-file upload with retry logic (3 attempts per file), and polling for deployment readiness with a 60-second timeout.
+    \item \textbf{\texttt{/api/vercel-deploy}:} Implements Vercel deployment with intelligent framework detection (supports Next.js, React/Vite, Remix, Nuxt, SvelteKit, Astro, Vue, Angular, and static sites), automatic build command configuration, project creation, and deployment status polling.
+\end{itemize}
+
+\subsubsection{Database APIs}
+\begin{itemize}
+    \item \textbf{\texttt{/api/supabase}:} Manages Supabase project listing with deduplication and chronological sorting.
+    \item \textbf{\texttt{/api/supabase.query}:} Executes PostgreSQL queries against Supabase projects with detailed error reporting.
+    \item \textbf{\texttt{/api/supabase.variables}:} Manages environment variables for Supabase projects.
+\end{itemize}
+
+\subsubsection{System and Utility APIs}
+\begin{itemize}
+    \item \textbf{\texttt{/api/health}:} A health check endpoint returning status and timestamp.
+    \item \textbf{\texttt{/api/system.diagnostics}:} Comprehensive system diagnostics including environment variable validation, cookie integrity checks, external API connectivity tests, and CORS status verification.
+    \item \textbf{\texttt{/api/web-search}:} A web page fetching and parsing service with URL validation (SSRF protection against private IP ranges), HTML content extraction (title, meta description, body text), and an 8,000-character content limit.
+\end{itemize}
+
+\subsection{Task 3: Multi-Provider LLM Architecture}
+
+One of the most architecturally significant contributions was the design and implementation of the multi-provider LLM system, located in \texttt{app/lib/modules/llm/}.
+
+\subsubsection{LLMManager Singleton}
+The \texttt{LLMManager} class implements the Singleton design pattern, providing a centralized registry for all LLM providers. Key responsibilities include:
+\begin{itemize}
+    \item Dynamic provider registration through auto-importing all provider modules
+    \item Model caching to avoid redundant API calls for model listings
+    \item Provider-specific model discovery (fetching available models from provider APIs)
+    \item Token limit management with provider- and model-specific configurations
+\end{itemize}
+
+\subsubsection{BaseProvider Abstract Class}
+Each LLM provider extends the \texttt{BaseProvider} abstract class, which provides:
+\begin{itemize}
+    \item Configurable API token and base URL resolution with a multi-source hierarchy: client-side cookies, server environment variables, Cloudflare Workers bindings, and \texttt{process.env} fallback
+    \item Model caching with cache key generation
+    \item Docker URL resolution (translating \texttt{localhost} to \texttt{host.docker.internal} for containerized deployments)
+    \item Timeout signal creation for model fetching operations (5-second default)
+\end{itemize}
+
+\subsubsection{Provider Implementations}
+Each of the 20+ provider implementations specifies:
+\begin{itemize}
+    \item \texttt{apiTokenKey} --- the environment variable name for the API key
+    \item \texttt{baseUrlKey} --- the base URL environment variable
+    \item \texttt{staticModels} --- a pre-defined list of available models with token limits
+    \item \texttt{getDynamicModels()} --- an optional function to fetch models from the provider's API at runtime
+    \item \texttt{getModelInstance()} --- a factory method for creating model instances compatible with the Vercel AI SDK's \texttt{LanguageModelV1} interface
+\end{itemize}
+
+\subsection{Task 4: State Management and Persistence}
+
+\subsubsection{Reactive State with Nanostores}
+The application uses Nanostores for lightweight, reactive state management with over 23 store instances in \texttt{app/lib/stores/}. Key stores include:
+\begin{itemize}
+    \item \textbf{workbench.ts:} The largest store, managing code editor state, file trees, preview URLs, terminal state, artifact tracking, and workbench visibility.
+    \item \textbf{settings.ts:} User preferences including provider configurations, API keys, and UI settings.
+    \item \textbf{theme.ts:} Dark/light mode state with localStorage persistence and CSS custom property switching via the \texttt{data-theme} HTML attribute.
+    \item \textbf{chat.ts, editor.ts, files.ts:} Core application state for chat sessions, editor configuration, and file system management.
+    \item \textbf{github.ts, supabase.ts, netlify.ts, vercel.ts:} Service integration stores for external platform connections.
+\end{itemize}
+
+\subsubsection{IndexedDB Persistence}
+Chat history and project snapshots are persisted to IndexedDB through a dedicated persistence layer in \texttt{app/lib/persistence/}:
+\begin{itemize}
+    \item The \texttt{buildstackHistory} database uses two object stores: \texttt{chats} (indexed on \texttt{id} and \texttt{urlId}) and \texttt{snapshots}.
+    \item Operations include \texttt{getAll()}, \texttt{setMessages()}, \texttt{getMessages()}, \texttt{deleteById()}, \texttt{forkChat()}, \texttt{duplicateChat()}, and snapshot management.
+    \item A debounced file locking system (300ms debounce) uses both in-memory caching and localStorage persistence with cross-tab synchronization via storage events.
+\end{itemize}
+
+\subsection{Task 5: Security Implementation}
+
+\subsubsection{Rate Limiting}
+An in-memory rate limiting system protects API endpoints with per-client tracking and endpoint-specific rules:
+\begin{itemize}
+    \item General API endpoints: 100 requests per 15 minutes
+    \item LLM call endpoints: 10 requests per minute
+    \item GitHub API endpoints: 30 requests per minute
+    \item Netlify API endpoints: 20 requests per minute
+\end{itemize}
+
+\subsubsection{Security Headers}
+All responses include comprehensive security headers:
+\begin{itemize}
+    \item \texttt{X-Frame-Options: DENY} to prevent clickjacking
+    \item \texttt{X-Content-Type-Options: nosniff} to prevent MIME type sniffing
+    \item \texttt{X-XSS-Protection: 1; mode=block} for XSS mitigation
+    \item \texttt{Content-Security-Policy} with restricted trusted sources
+    \item \texttt{Strict-Transport-Security} in production (31,536,000 seconds)
+    \item \texttt{Permissions-Policy} disabling camera, microphone, and geolocation
+    \item \texttt{Cross-Origin-Embedder-Policy: require-corp} and \texttt{Cross-Origin-Opener-Policy: same-origin} for WebContainer \texttt{SharedArrayBuffer} support
+\end{itemize}
+
+\subsubsection{SSRF Protection}
+The \texttt{url.ts} utility implements Server-Side Request Forgery (SSRF) protection by blocking requests to private IP ranges (127.x.x.x, 10.x.x.x, 172.16--31.x.x, 192.168.x.x, \texttt{::1}, \texttt{0.0.0.0}) and allowing only public HTTP/HTTPS URLs.
+
+\subsubsection{Encryption}
+Sensitive data is protected using AES-CBC encryption via the Web Crypto API (\texttt{crypto.subtle}), with random initialization vectors per encryption operation and Base64 encoding of ciphertext.
+
+\subsection{Task 6: WebContainer Integration}
+
+The WebContainer integration in \texttt{app/lib/webcontainer/} provides the sandboxed in-browser execution environment:
+\begin{itemize}
+    \item Lazy-loads the WebContainer with \texttt{coep: 'credentialless'} for security isolation
+    \item Injects an inspector script for forwarding preview errors (uncaught exceptions and unhandled promise rejections) from the preview iframe to the main application
+    \item Manages shell processes through the \texttt{BuildStackShell} class with stream multiplexing, OSC sequence parsing, and Expo URL detection for React Native development
+    \item Provides command execution and terminal output cleaning (ANSI escape code removal, newline normalization)
+\end{itemize}
+
+\subsection{Task 7: AI Prompt Engineering}
+
+The system prompt architecture in \texttt{app/lib/common/prompts/} defines three prompt variants:
+\begin{itemize}
+    \item \textbf{Default (Fine-tuned):} The recommended production prompt optimized for code generation quality and instruction following.
+    \item \textbf{Original:} The comprehensive battle-tested system prompt with detailed WebContainer constraints, database instructions, and code formatting rules.
+    \item \textbf{Optimized:} An experimental condensed version targeting lower token usage while maintaining functional parity.
+\end{itemize}
+
+All prompts include detailed instructions for:
+\begin{itemize}
+    \item WebContainer environment constraints (no pip, no C++ compiler, limited Python standard library)
+    \item Available shell commands (cat, ls, node, python3, jq, curl, etc.)
+    \item Database operations with Supabase (migration file creation, RLS policies, TypeScript integration)
+    \item Code formatting standards (2-space indentation)
+    \item Message formatting with allowed HTML elements
+    \item Chain-of-thought reasoning patterns
+    \item Artifact format specification using \texttt{\textless buildstackArtifact\textgreater} and \texttt{\textless buildstackAction\textgreater} XML tags
+\end{itemize}
+
+\subsection{Task 8: Runtime Message Parsing}
+
+The \texttt{StreamingMessageParser} in \texttt{app/lib/runtime/} processes AI streaming output in real-time:
+\begin{itemize}
+    \item Detects and parses XML artifact tags (\texttt{\textless buildstackArtifact\textgreater}, \texttt{\textless buildstackAction\textgreater})
+    \item Supports three action types: \texttt{file} (code generation), \texttt{shell} (terminal commands), and \texttt{supabase} (database operations)
+    \item Provides callback hooks: \texttt{onArtifactOpen}, \texttt{onArtifactClose}, \texttt{onActionOpen}, \texttt{onActionStream}, \texttt{onActionClose}
+    \item Handles escaped tags, markdown code blocks, and quick actions
+    \item An enhanced parser variant auto-detects untagged code blocks and wraps them in appropriate artifact tags
+\end{itemize}
+
+\subsection{Task 9: Desktop Application Development}
+
+The Electron desktop application was developed with:
+\begin{itemize}
+    \item Separate Vite build configurations for the main process, preload script, and renderer
+    \item Electron Builder configuration for cross-platform packaging (DMG for macOS, NSIS for Windows, AppImage/DEB for Linux)
+    \item Auto-update functionality via \texttt{electron-updater} with GitHub Releases as the update channel
+    \item Window management and native menu integration
+    \item Persistent settings storage via \texttt{electron-store}
+\end{itemize}
+
+\subsection{Task 10: Docker and Cloud Deployment}
+
+\subsubsection{Docker Multi-Stage Build}
+The Dockerfile implements a multi-stage build process:
+\begin{enumerate}
+    \item \textbf{Build stage:} Uses Node.js 22-bookworm, installs dependencies with pnpm 9.15.9, and builds the Remix application with 4GB Node heap allocation.
+    \item \textbf{Production dependencies stage:} Strips development dependencies for a minimal production image.
+    \item \textbf{Production stage:} Final image with health checks on port 5173, Git for runtime operations, and disabled Wrangler metrics.
+    \item \textbf{Development stage:} Hot-reload support with volume mounts and file polling for Docker file watching.
+\end{enumerate}
+
+\subsubsection{Cloud Deployment}
+\begin{itemize}
+    \item \textbf{Cloudflare Pages:} Primary deployment target using Wrangler with \texttt{nodejs\_compat} compatibility flag.
+    \item \textbf{Vercel:} Alternative deployment with custom build command and COEP/COOP headers configured in \texttt{vercel.json}.
+    \item \textbf{Docker Compose:} Multi-service configuration with production, development, and pre-built image profiles.
+\end{itemize}
+
+\section{Individual Contribution}
+
+My individual contributions to the BuildStack project during the internship spanned multiple areas of the platform:
+
+\begin{enumerate}
+    \item \textbf{Architected the multi-provider LLM system:} Designed and implemented the \texttt{BaseProvider} abstract class, the \texttt{LLMManager} singleton, and individual provider implementations for all 20+ supported LLM providers.
+
+    \item \textbf{Built the streaming chat pipeline:} Implemented the complete Server-Sent Events streaming architecture including the \texttt{SwitchableStream} for multi-segment responses, the \texttt{StreamRecoveryManager} for automatic timeout recovery, and cumulative token usage tracking.
+
+    \item \textbf{Developed the context optimization system:} Created the intelligent file selection algorithm that uses a secondary LLM call to identify the 5 most relevant project files for each conversation turn, significantly reducing token usage while maintaining response quality.
+
+    \item \textbf{Implemented security infrastructure:} Built the rate limiting middleware, security header injection, SSRF protection, API key validation, and AES-CBC encryption utilities.
+
+    \item \textbf{Created the deployment integrations:} Developed the complete Netlify and Vercel deployment pipelines with framework detection, file digest calculation, and deployment status polling.
+
+    \item \textbf{Designed the persistence layer:} Implemented the IndexedDB-based chat history system with snapshot support, the debounced file locking mechanism with cross-tab synchronization, and the localStorage-based settings persistence.
+
+    \item \textbf{Built UI components:} Developed over 40 reusable UI components using Radix UI primitives with custom styling through class-variance-authority.
+
+    \item \textbf{Configured DevOps pipeline:} Set up Docker multi-stage builds, Cloudflare Pages deployment, Vercel hosting, and Electron cross-platform packaging.
+\end{enumerate}
+
+%=============== CHAPTER 4 =================%
+\chapter{Tools and Technologies Used}
+
+\section{Programming Languages}
+
+\begin{table}[H]
+\centering
+\caption{Programming Languages Used in BuildStack}
+\label{tab:languages}
+\begin{tabular}{|p{3cm}|p{2cm}|p{7cm}|}
+\hline
+\textbf{Language} & \textbf{Version} & \textbf{Role in Project} \\
+\hline
+TypeScript & 5.7.2 & Primary development language for both frontend and backend. Provides static type checking, interfaces, generics, and enhanced IDE support for safer, more maintainable code. \\
+\hline
+JavaScript (ES2022+) & ESNext & Runtime language for Node.js server-side execution and browser-side rendering. Used for configuration files and build scripts. \\
+\hline
+HTML5 & 5 & Markup language for the application's document structure, used in Remix server-side rendering templates and component JSX output. \\
+\hline
+CSS3 / SCSS & -- & Styling language used through UNO CSS (atomic utility classes), SCSS preprocessing for component-scoped styles, and CSS custom properties for the theming system. \\
+\hline
+SQL (PostgreSQL) & -- & Database query language used through the Supabase integration for creating tables, writing migrations, executing queries, and defining row-level security policies. \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Software and Frameworks}
+
+\subsection{Core Frameworks}
+
+\begin{table}[H]
+\centering
+\caption{Core Frameworks Used in BuildStack}
+\label{tab:frameworks}
+\begin{tabular}{|p{3.5cm}|p{2cm}|p{6.5cm}|}
+\hline
+\textbf{Framework} & \textbf{Version} & \textbf{Purpose} \\
+\hline
+React & 18.3.1 & Frontend UI library for building component-based user interfaces with hooks, concurrent rendering, and server-side rendering support. \\
+\hline
+Remix & 2.15.2 & Full-stack React framework providing file-based routing, server-side rendering, nested layouts, streaming responses, and built-in form handling. \\
+\hline
+Vite & 5.4.11 & Next-generation build tool providing fast development server with Hot Module Replacement (HMR), optimized production builds, and plugin extensibility. \\
+\hline
+Electron & 33.2.0 & Cross-platform desktop application framework enabling BuildStack to run as a native app on macOS, Windows, and Linux. \\
+\hline
+Vercel AI SDK & 4.3.16 & Unified abstraction layer for integrating multiple LLM providers with streaming support, tool calling, and token management. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{UI and Styling Libraries}
+
+\begin{table}[H]
+\centering
+\caption{UI and Styling Libraries}
+\label{tab:ui-libs}
+\begin{tabular}{|p{4cm}|p{2cm}|p{6cm}|}
+\hline
+\textbf{Library} & \textbf{Version} & \textbf{Purpose} \\
+\hline
+UNO CSS & 0.61.9 & Atomic CSS engine (Tailwind-compatible) for utility-first styling with custom icon collections and design tokens. \\
+\hline
+Radix UI & Various & Headless, accessible UI component primitives (Dialog, Popover, Tabs, Checkbox, Switch, Tooltip, etc.) providing ARIA-compliant interactions. \\
+\hline
+Framer Motion & 11.12.0 & Animation library for React providing declarative animations, gesture handling, and layout transitions. \\
+\hline
+class-variance-authority & 0.7.0 & Type-safe component variant management for creating consistent, composable styling APIs. \\
+\hline
+tailwind-merge & 2.2.1 & Utility for intelligently merging Tailwind/UNO CSS class names without conflicts. \\
+\hline
+Lucide React & 0.485.0 & Icon library providing consistent, customizable SVG icons. \\
+\hline
+Phosphor Icons & 2.1.7 & Additional icon library for specialized icon needs. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Code Editor and Terminal}
+
+\begin{table}[H]
+\centering
+\caption{Editor and Terminal Libraries}
+\label{tab:editor-libs}
+\begin{tabular}{|p{4cm}|p{2cm}|p{6cm}|}
+\hline
+\textbf{Library} & \textbf{Version} & \textbf{Purpose} \\
+\hline
+CodeMirror 6 & 6.x & Extensible code editor framework providing syntax highlighting, auto-completion, bracket matching, and customizable themes for 10+ languages. \\
+\hline
+Shiki & 1.24.0 & Syntax highlighter used for rendering code blocks in chat messages with VS Code-quality highlighting. \\
+\hline
+xterm.js & 5.5.0 & Terminal emulator library for rendering an interactive terminal in the browser with addon support (fit, web-links). \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{AI Provider SDKs}
+
+\begin{table}[H]
+\centering
+\caption{AI Provider SDK Integrations}
+\label{tab:ai-sdks}
+\begin{tabular}{|p{4cm}|p{2cm}|p{6cm}|}
+\hline
+\textbf{SDK Package} & \textbf{Version} & \textbf{Provider} \\
+\hline
+@ai-sdk/openai & 1.1.2 & OpenAI (GPT-4, GPT-3.5, reasoning models) \\
+\hline
+@ai-sdk/anthropic & 0.0.39 & Anthropic (Claude 3.5 Sonnet, Claude 3 Opus) \\
+\hline
+@ai-sdk/google & 1.2.20 & Google (Gemini 1.5 Pro, Gemini 1.5 Flash) \\
+\hline
+@ai-sdk/mistral & 0.0.43 & Mistral AI models \\
+\hline
+@ai-sdk/cohere & 1.0.3 & Cohere (Command R, Command R+) \\
+\hline
+@ai-sdk/deepseek & 0.1.3 & DeepSeek models \\
+\hline
+@ai-sdk/amazon-bedrock & 1.0.6 & AWS Bedrock foundation models \\
+\hline
+@ai-sdk/cerebras & 0.2.16 & Cerebras inference \\
+\hline
+@ai-sdk/fireworks & 0.2.16 & Fireworks AI models \\
+\hline
+@openrouter/ai-sdk-provider & 0.0.5 & OpenRouter model aggregator \\
+\hline
+ollama-ai-provider & 0.15.2 & Ollama local models \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{State Management and Data}
+
+\begin{table}[H]
+\centering
+\caption{State Management and Data Libraries}
+\label{tab:state-libs}
+\begin{tabular}{|p{3.5cm}|p{2cm}|p{6.5cm}|}
+\hline
+\textbf{Library} & \textbf{Version} & \textbf{Purpose} \\
+\hline
+Nanostores & 0.10.3 & Lightweight reactive state management using atomic stores with React integration via @nanostores/react. \\
+\hline
+Zustand & 5.0.3 & Supplementary state management for complex, hierarchical state needs. \\
+\hline
+Zod & 3.24.1 & Schema validation library for runtime type checking of API inputs, MCP configurations, and user data. \\
+\hline
+IndexedDB (native) & -- & Browser-native database for persistent chat history and project snapshot storage. \\
+\hline
+js-cookie & 3.0.5 & Cookie management for API key storage and provider settings. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Git and Version Control}
+
+\begin{table}[H]
+\centering
+\caption{Git and Version Control Libraries}
+\label{tab:git-libs}
+\begin{tabular}{|p{3.5cm}|p{2cm}|p{6.5cm}|}
+\hline
+\textbf{Library} & \textbf{Version} & \textbf{Purpose} \\
+\hline
+isomorphic-git & 1.27.2 & Pure JavaScript Git implementation enabling Git operations (clone, commit, push, pull) directly in the browser without native Git binaries. \\
+\hline
+@octokit/rest & 21.0.2 & Official GitHub REST API client for repository management, user authentication, and branch operations. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Markdown and Content Rendering}
+
+\begin{table}[H]
+\centering
+\caption{Content Rendering Libraries}
+\label{tab:markdown-libs}
+\begin{tabular}{|p{3.5cm}|p{2cm}|p{6.5cm}|}
+\hline
+\textbf{Library} & \textbf{Version} & \textbf{Purpose} \\
+\hline
+react-markdown & 9.0.1 & Renders Markdown content in React components with plugin support. \\
+\hline
+remark-gfm & 4.0.0 & GitHub Flavored Markdown plugin adding tables, strikethrough, task lists, and autolinks. \\
+\hline
+rehype-sanitize & 6.0.0 & HTML sanitization plugin preventing XSS attacks in rendered Markdown content. \\
+\hline
+rehype-raw & 7.0.0 & Allows raw HTML in Markdown for rendering formatted AI responses. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Deployment and DevOps}
+
+\begin{table}[H]
+\centering
+\caption{Deployment and DevOps Tools}
+\label{tab:devops}
+\begin{tabular}{|p{3.5cm}|p{2cm}|p{6.5cm}|}
+\hline
+\textbf{Tool} & \textbf{Version} & \textbf{Purpose} \\
+\hline
+Wrangler & 4.44.0 & Cloudflare's CLI tool for deploying to Cloudflare Pages and managing Workers. \\
+\hline
+Docker & -- & Container platform for building reproducible development and production environments with multi-stage builds. \\
+\hline
+Electron Builder & 26.0.12 & Tool for packaging Electron apps into distributable formats (DMG, NSIS, AppImage, DEB). \\
+\hline
+Husky & 9.1.7 & Git hooks manager for enforcing pre-commit linting and code quality checks. \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Testing and Code Quality}
+
+\begin{table}[H]
+\centering
+\caption{Testing and Code Quality Tools}
+\label{tab:testing}
+\begin{tabular}{|p{3.5cm}|p{2cm}|p{6.5cm}|}
+\hline
+\textbf{Tool} & \textbf{Version} & \textbf{Purpose} \\
+\hline
+Vitest & 2.1.7 & Vite-native testing framework for unit tests with Jest-compatible API and fast execution. \\
+\hline
+ESLint & -- & Static code analysis tool for identifying and fixing JavaScript/TypeScript code quality issues. \\
+\hline
+Prettier & 3.5.3 & Opinionated code formatter ensuring consistent code style across the codebase. \\
+\hline
+TypeScript & 5.7.2 & Static type checking providing compile-time error detection and enhanced IDE support. \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Other Technologies}
+
+\subsection{WebContainer API}
+The \textbf{WebContainer API} (version 1.6.1) by StackBlitz is the foundational technology that enables BuildStack to execute Node.js applications entirely within the browser. WebContainer provides:
+\begin{itemize}
+    \item A sandboxed Node.js runtime that runs in a web browser
+    \item A virtual file system for creating and managing project files
+    \item A shell emulation (zsh-like) for running commands
+    \item npm package installation without a server
+    \item Web server hosting with port-based URL access
+    \item WebAssembly-based execution for near-native performance
+\end{itemize}
+
+The WebContainer requires \texttt{Cross-Origin-Embedder-Policy: require-corp} and \texttt{Cross-Origin-Opener-Policy: same-origin} headers to enable \texttt{SharedArrayBuffer}, which is essential for its multi-threaded execution model.
+
+\subsection{Model Context Protocol (MCP)}
+The \textbf{Model Context Protocol (MCP)} integration (via \texttt{@modelcontextprotocol/sdk} version 1.15.0) enables BuildStack to extend AI capabilities through external tool servers. MCP supports three transport types:
+\begin{itemize}
+    \item \textbf{stdio:} Communication via standard input/output streams
+    \item \textbf{SSE:} Server-Sent Events for real-time tool communication
+    \item \textbf{Streamable HTTP:} HTTP-based streaming for tool invocation
+\end{itemize}
+
+MCP tools are registered dynamically and presented to the user for approval before execution, with comprehensive error handling for tool execution failures.
+
+\subsection{Supabase}
+\textbf{Supabase} serves as the backend-as-a-service platform for database management, providing:
+\begin{itemize}
+    \item PostgreSQL database with REST API access
+    \item Row-Level Security (RLS) for fine-grained access control
+    \item Built-in authentication (email/password)
+    \item Real-time subscriptions
+    \item Environment variable management
+\end{itemize}
+
+\subsection{Development and Build Environment}
+\begin{itemize}
+    \item \textbf{Node.js 20+:} Runtime requirement for \texttt{Response.json()} and Web Streams API support.
+    \item \textbf{pnpm 9.14.4:} Fast, disk-efficient package manager with strict dependency resolution.
+    \item \textbf{Git:} Version control with Husky pre-commit hooks for automated code quality enforcement.
+    \item \textbf{Lighthouse CI:} Automated performance, accessibility, best practices, and SEO auditing with minimum score thresholds (0.8 for performance, 0.9 for accessibility).
+\end{itemize}
+
+%=============== CHAPTER 5 =================%
+\chapter{Outcomes and Learning Experience}
+
+\section{Results Achieved}
+
+The internship resulted in the successful development and deployment of the BuildStack platform with the following quantifiable outcomes:
+
+\subsection{Platform Scale}
+\begin{itemize}
+    \item \textbf{207+ React components} developed across 11 component directories, forming a comprehensive UI component library.
+    \item \textbf{33+ API endpoints} implemented, covering AI chat, model management, Git operations, deployment, database management, and system diagnostics.
+    \item \textbf{20+ LLM providers} integrated through a unified provider architecture, supporting both cloud-based and locally-hosted AI models.
+    \item \textbf{23+ reactive stores} implemented for state management, covering all aspects of the application from chat state to service integrations.
+    \item \textbf{27+ custom React hooks} developed for reusable logic including chat history, settings management, model health monitoring, and keyboard shortcuts.
+    \item \textbf{31 utility modules} created, providing shared functionality for logging, file processing, path management, security, and terminal interaction.
+    \item \textbf{38 route handlers} covering the complete Remix routing structure for both page rendering and API endpoints.
+    \item \textbf{110+ direct dependencies} managed through pnpm with strict version locking.
+\end{itemize}
+
+\subsection{Feature Completeness}
+\begin{itemize}
+    \item \textbf{AI-Powered Development:} Full conversational AI interface with real-time streaming, context optimization, prompt enhancement, and multi-segment response support.
+    \item \textbf{Integrated IDE:} Complete browser-based development environment with code editor (10+ language support), file explorer, terminal, and responsive live preview with 12 device presets.
+    \item \textbf{Version Control:} Git clone, import, branch management, and code export through isomorphic-git and GitHub/GitLab API integrations.
+    \item \textbf{Deployment:} One-click deployment to Netlify, Vercel, and GitHub Pages with intelligent framework detection for 10+ web frameworks.
+    \item \textbf{Database:} Supabase integration with migration management, query execution, and RLS policy configuration.
+    \item \textbf{Desktop App:} Cross-platform Electron application with auto-updates for macOS, Windows, and Linux.
+    \item \textbf{Security:} Comprehensive security implementation including rate limiting, CSRF protection, CSP headers, SSRF prevention, and AES-CBC encryption.
+    \item \textbf{MCP Tools:} Extensible AI capability system through the Model Context Protocol.
+    \item \textbf{Voice Input:} Speech recognition for hands-free prompt input.
+    \item \textbf{Data Visualization:} Integrated charts and graphs using Chart.js and react-chartjs-2.
+\end{itemize}
+
+\subsection{Deployment Infrastructure}
+\begin{itemize}
+    \item Docker multi-stage builds with production and development profiles
+    \item Cloudflare Pages deployment with Workers compatibility
+    \item Vercel deployment with COEP/COOP headers
+    \item Docker Compose orchestration for multi-service deployments
+    \item Lighthouse CI integration with minimum quality thresholds
+\end{itemize}
+
+\section{Key Learnings}
+
+\subsection{Technical Skills Acquired}
+
+\subsubsection{Full-Stack Web Development}
+\begin{itemize}
+    \item Advanced React patterns including hooks, memoization, context providers, and concurrent rendering with React 18.
+    \item Server-side rendering (SSR) with Remix, including streaming responses, nested routing, and the loader/action pattern for data fetching.
+    \item TypeScript best practices including generic types, discriminated unions, type guards, and strict mode compliance.
+    \item Component-driven development with Radix UI headless primitives and class-variance-authority for type-safe styling variants.
+\end{itemize}
+
+\subsubsection{AI and LLM Integration}
+\begin{itemize}
+    \item Designing pluggable, provider-agnostic LLM architectures using the Vercel AI SDK.
+    \item Implementing Server-Sent Events (SSE) streaming for real-time AI response delivery.
+    \item Token management, context window optimization, and intelligent file selection algorithms.
+    \item Prompt engineering for system prompts that guide AI behavior within specific constraints (WebContainer limitations, database best practices).
+    \item Stream recovery patterns for handling network timeouts and partial response failures.
+    \item Model Context Protocol (MCP) for extending AI capabilities through external tools.
+\end{itemize}
+
+\subsubsection{Browser-Based Code Execution}
+\begin{itemize}
+    \item WebContainer API for running Node.js applications in browser sandboxes.
+    \item Virtual file system management and shell process spawning.
+    \item Cross-origin isolation requirements (COEP/COOP) for SharedArrayBuffer support.
+    \item Terminal emulation with xterm.js including ANSI escape code handling and OSC sequence parsing.
+\end{itemize}
+
+\subsubsection{State Management and Persistence}
+\begin{itemize}
+    \item Reactive state management with Nanostores, including atomic stores, computed values, and React subscriptions.
+    \item IndexedDB for structured client-side data persistence with versioned schemas.
+    \item Cross-tab synchronization via localStorage events.
+    \item Debounced persistence patterns for performance optimization.
+\end{itemize}
+
+\subsubsection{Security Engineering}
+\begin{itemize}
+    \item Implementing defense-in-depth security including rate limiting, CSP, HSTS, and permission policies.
+    \item SSRF prevention through URL validation and private IP range blocking.
+    \item AES-CBC encryption with Web Crypto API for sensitive data protection.
+    \item Cookie-based session management with secure encoding practices.
+\end{itemize}
+
+\subsubsection{DevOps and Deployment}
+\begin{itemize}
+    \item Docker multi-stage build optimization for minimal production images.
+    \item Cloudflare Workers and Pages deployment with wrangler CLI.
+    \item Electron application packaging and distribution for three operating systems.
+    \item CI/CD pipeline configuration with Husky pre-commit hooks and Lighthouse performance auditing.
+\end{itemize}
+
+\subsection{Professional Skills Developed}
+
+\begin{itemize}
+    \item \textbf{Open-Source Collaboration:} Working within a community-driven development model with pull request reviews, issue tracking, and contribution guidelines.
+    \item \textbf{Technical Documentation:} Writing comprehensive documentation including README files, API documentation, and inline code comments for a large-scale project.
+    \item \textbf{Project Management:} Planning and executing development tasks within an Agile framework with iterative sprints and continuous delivery.
+    \item \textbf{Code Review Practices:} Conducting and receiving code reviews, providing constructive feedback, and maintaining code quality standards through ESLint, Prettier, and TypeScript strict mode.
+    \item \textbf{Problem Decomposition:} Breaking complex features (such as multi-provider LLM integration or deployment pipelines) into manageable, testable components.
+\end{itemize}
+
+\section{Challenges Faced}
+
+\subsection{Challenge 1: WebContainer Constraints}
+\textbf{Problem:} The WebContainer API, while powerful, operates within significant constraints --- no native binary execution, limited Python standard library, no C/C++ compiler, no Git binary, and no pip support. These constraints required careful consideration in every AI system prompt and code generation decision.
+
+\textbf{Resolution:} Developed comprehensive system prompts that explicitly document all WebContainer limitations, ensuring the AI generates compatible code. Implemented constraint-aware template selection that guides users toward WebContainer-compatible project structures (e.g., recommending Vite over custom webpack configurations, SQLite over PostgreSQL for local databases).
+
+\subsection{Challenge 2: Multi-Provider LLM Consistency}
+\textbf{Problem:} Each LLM provider has different API formats, authentication mechanisms, model naming conventions, token limits, and response formats. Ensuring consistent behavior across 20+ providers was a significant engineering challenge.
+
+\textbf{Resolution:} Designed the \texttt{BaseProvider} abstract class with a standardized interface that each provider implementation must satisfy. The Vercel AI SDK's \texttt{LanguageModelV1} interface provided a unified model abstraction, while provider-specific quirks (such as reasoning model detection for OpenAI's o1/o3 series) were handled through configurable overrides.
+
+\subsection{Challenge 3: Streaming Response Reliability}
+\textbf{Problem:} Real-time streaming of AI responses over Server-Sent Events is inherently fragile --- network interruptions, server timeouts, and provider-side rate limiting can all cause stream failures mid-response, leaving users with incomplete output.
+
+\textbf{Resolution:} Implemented the \texttt{StreamRecoveryManager} with a 45-second timeout threshold and automatic retry logic (up to 2 retries). The \texttt{SwitchableStream} enables multi-segment responses, automatically continuing when the AI reaches its token limit. Progress annotations inform users of the current streaming stage (summary, context selection, response generation).
+
+\subsection{Challenge 4: Context Window Management}
+\textbf{Problem:} With a 128,000-token maximum context window, including all project files in the AI context quickly becomes infeasible for non-trivial projects. However, excluding relevant files degrades response quality.
+
+\textbf{Resolution:} Implemented an intelligent context optimization system that uses a secondary LLM call to analyze the conversation and select the 5 most relevant files from the project. This reduced average token usage by approximately 60\% while maintaining response quality for targeted code generation tasks.
+
+\subsection{Challenge 5: Cross-Origin Security Requirements}
+\textbf{Problem:} The WebContainer API requires \texttt{SharedArrayBuffer} for its multi-threaded execution model, which in turn requires \texttt{Cross-Origin-Embedder-Policy: require-corp} and \texttt{Cross-Origin-Opener-Policy: same-origin} headers. These headers restrict the loading of cross-origin resources, potentially breaking external API calls and third-party integrations.
+
+\textbf{Resolution:} Configured COEP with \texttt{credentialless} mode for WebContainer initialization, allowing cross-origin resources to load while maintaining the security isolation required for SharedArrayBuffer. Additionally, implemented a CORS proxy (\texttt{/api/git-proxy}) for Git operations that need to access external repositories.
+
+\section{Contribution to Knowledge}
+
+The internship experience at Novigo Solutions Pvt Ltd contributed significantly to both my technical knowledge and understanding of the broader software engineering landscape:
+
+\subsection{Understanding AI-Assisted Development}
+Working on BuildStack provided deep insight into how Large Language Models can be integrated into development workflows --- not just as external chat assistants, but as active participants in the code generation, execution, and deployment pipeline. The experience highlighted both the transformative potential and current limitations of AI in software development, including the critical importance of prompt engineering, context management, and the need for human oversight in AI-generated code.
+
+\subsection{Architecture at Scale}
+Building a platform with 200+ components, 33+ API endpoints, and 20+ provider integrations provided valuable experience in designing scalable, maintainable software architectures. Key architectural patterns learned include the Singleton pattern for resource management, the Provider pattern for pluggable integrations, the Stream Aggregation pattern for combining multiple data sources, and the Middleware pattern for cross-cutting concerns like security and logging.
+
+\subsection{Open-Source Software Engineering}
+Contributing to an open-source project provided practical experience in collaborative software development, including code review processes, contribution guidelines, issue tracking, release management, and community engagement. This experience demonstrated the value of transparent development practices, comprehensive documentation, and welcoming contributor onboarding processes.
+
+\subsection{Browser as a Platform}
+Working with WebContainer, IndexedDB, Web Crypto API, Web Workers, and SharedArrayBuffer deepened my understanding of the modern browser as a capable application platform. The experience showed that complex server-like workloads (Node.js execution, file system management, terminal emulation) can now run entirely client-side, opening new possibilities for privacy-preserving and offline-capable applications.
+
+\subsection{Security-First Development}
+Implementing comprehensive security measures --- rate limiting, CSP headers, SSRF protection, encryption, and input validation --- reinforced the importance of security as a foundational concern rather than an afterthought. The experience demonstrated that security and usability can coexist when security measures are designed as part of the architecture from the beginning.
+
+%=============== CHAPTER 6: CONCLUSION =================%
+\chapter{Conclusion}
+
+The internship at Novigo Solutions Pvt Ltd provided an intensive, hands-on experience in building a production-grade, AI-powered full-stack web development platform. Over the course of the internship period from January 2026 to April 2026, I contributed to the design, development, testing, and deployment of a comprehensive platform that demonstrates the transformative potential of integrating Large Language Models with modern web development tools.
+
+The BuildStack platform represents a significant step toward democratizing software development. By combining conversational AI with a full-featured browser-based IDE, the platform eliminates the traditional barriers of complex environment setup, fragmented toolchains, and manual deployment processes. The support for 19+ LLM providers ensures that users are not locked into any single AI vendor, while the open-source nature of the project invites community contributions and ensures long-term sustainability.
+
+From a technical perspective, the project provided deep experience across the entire modern web development stack --- from React component architecture and TypeScript type systems on the frontend, through Remix server-side rendering and streaming API design on the backend, to Docker containerization and cloud deployment on the infrastructure layer. The multi-provider LLM integration architecture, with its abstract provider pattern and unified streaming interface, demonstrates a scalable approach to AI integration that can be extended to support future AI models and providers.
+
+The security implementation, including rate limiting, Content Security Policy, SSRF protection, and AES-CBC encryption, demonstrates a security-first approach to application development that protects users without sacrificing usability. The context optimization system, which intelligently selects relevant project files for each AI interaction, showcases the application of AI to improve its own efficiency --- a meta-learning approach that reduces costs while maintaining quality.
+
+Key metrics of the project include:
+\begin{itemize}
+    \item \textbf{207+ React components} forming a comprehensive UI component library
+    \item \textbf{33+ API endpoints} covering all platform functionality
+    \item \textbf{20+ LLM providers} integrated through a unified architecture
+    \item \textbf{110+ npm dependencies} managed with strict version control
+    \item \textbf{Cross-platform deployment} to Cloudflare, Vercel, Docker, and Electron desktop
+    \item \textbf{3 deployment targets} (Netlify, Vercel, GitHub Pages) with one-click deployment
+    \item \textbf{MIT License} enabling open-source community contribution
+\end{itemize}
+
+Looking forward, BuildStack's roadmap includes several exciting directions: a backend agent architecture moving from single model calls to multi-agent systems, enhanced file locking and diff improvements, LLM prompt optimization for smaller models, VSCode integration, document upload for knowledge-augmented generation, and additional provider integrations for Azure OpenAI, Vertex AI, and Granite. These planned features will further enhance the platform's capabilities and expand its user base.
+
+In conclusion, this internship provided an invaluable opportunity to work at the intersection of artificial intelligence and software engineering --- two of the most impactful fields in modern technology. The experience of building a platform that helps other developers build software more efficiently has been deeply fulfilling, and the technical skills, professional practices, and architectural thinking gained during this internship will serve as a strong foundation for my future career in software engineering.
+
+%=============== REFERENCES =================%
+\newpage
+\chapter*{References}
+\addcontentsline{toc}{chapter}{\numberline{}References}
+
+\begin{enumerate}
+    \item React Documentation, ``React -- A JavaScript Library for Building User Interfaces,'' Meta Platforms Inc., 2024. Available: \texttt{https://react.dev/}
+
+    \item Remix Documentation, ``Remix -- Full Stack Web Framework,'' Shopify Inc., 2024. Available: \texttt{https://remix.run/docs}
+
+    \item Vercel AI SDK Documentation, ``AI SDK -- The AI Toolkit for TypeScript,'' Vercel Inc., 2024. Available: \texttt{https://sdk.vercel.ai/docs}
+
+    \item WebContainer API Documentation, ``WebContainer API,'' StackBlitz Inc., 2024. Available: \texttt{https://webcontainers.io/}
+
+    \item TypeScript Documentation, ``TypeScript: JavaScript With Syntax For Types,'' Microsoft Corporation, 2024. Available: \texttt{https://www.typescriptlang.org/docs/}
+
+    \item CodeMirror Documentation, ``CodeMirror 6 Reference Manual,'' Marijn Haverbeke, 2024. Available: \texttt{https://codemirror.net/docs/}
+
+    \item Electron Documentation, ``Electron | Build Cross-Platform Desktop Apps,'' OpenJS Foundation, 2024. Available: \texttt{https://www.electronjs.org/docs}
+
+    \item Supabase Documentation, ``Supabase -- The Open Source Firebase Alternative,'' Supabase Inc., 2024. Available: \texttt{https://supabase.com/docs}
+
+    \item UNO CSS Documentation, ``UnoCSS -- Instant On-demand Atomic CSS Engine,'' Anthony Fu, 2024. Available: \texttt{https://unocss.dev/}
+
+    \item Nanostores Documentation, ``Nanostores -- A Tiny State Manager,'' Andrey Sitnik, 2024. Available: \texttt{https://github.com/nanostores/nanostores}
+
+    \item Radix UI Documentation, ``Radix Primitives -- Unstyled, Accessible Components,'' WorkOS Inc., 2024. Available: \texttt{https://www.radix-ui.com/primitives}
+
+    \item Docker Documentation, ``Docker Docs,'' Docker Inc., 2024. Available: \texttt{https://docs.docker.com/}
+
+    \item Cloudflare Workers Documentation, ``Cloudflare Workers,'' Cloudflare Inc., 2024. Available: \texttt{https://developers.cloudflare.com/workers/}
+
+    \item Vite Documentation, ``Vite -- Next Generation Frontend Tooling,'' Evan You, 2024. Available: \texttt{https://vitejs.dev/guide/}
+
+    \item Model Context Protocol Specification, ``MCP -- Model Context Protocol,'' Anthropic, 2024. Available: \texttt{https://modelcontextprotocol.io/}
+
+    \item xterm.js Documentation, ``xterm.js -- A Terminal for the Web,'' The xterm.js Authors, 2024. Available: \texttt{https://xtermjs.org/docs/}
+
+    \item isomorphic-git Documentation, ``isomorphic-git -- A Pure JavaScript Implementation of Git,'' William Hilton, 2024. Available: \texttt{https://isomorphic-git.org/}
+
+    \item Octokit REST Documentation, ``Octokit -- Official GitHub REST API Client,'' GitHub Inc., 2024. Available: \texttt{https://octokit.github.io/rest.js/}
+
+    \item Vitest Documentation, ``Vitest -- Blazing Fast Unit Test Framework,'' Vitest Contributors, 2024. Available: \texttt{https://vitest.dev/}
+
+    \item OWASP Foundation, ``OWASP Top Ten Web Application Security Risks,'' 2021. Available: \texttt{https://owasp.org/www-project-top-ten/}
+\end{enumerate}
+
+\end{document}

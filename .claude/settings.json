@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpm add:*)",
+      "Bash(find app:*)",
+      "Bash(pnpm run:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m ':*)",
+      "Bash(node -e \"const pkg = require\\('./node_modules/@remix-run/node/package.json'\\); console.log\\(pkg.version\\)\")",
+      "Bash(git push:*)",
+      "Bash(pnpm lint:fix)",
+      "Bash(xargs ls:*)",
+      "Bash(ls -1 /Users/afza1./Desktop/BuildStack/app/routes/api.*)"
+    ]
+  }
+}
